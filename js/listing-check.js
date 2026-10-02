@@ -275,7 +275,7 @@
       <h3 class="fix-title">Your top 3 fixes</h3>
       <ol class="fix-list">${f}</ol>
       <div class="score-cta">
-        <a class="btn btn-primary" href="${root.NB_OFFERS || '#offers'}">Get it fixed</a>
+        <a class="btn btn-primary" href="#offers">Get it fixed</a>
         <button class="btn btn-outline" type="button" data-edit>Edit and rescore</button>
       </div>
       <p class="score-disclaimer">An independent audit of the listing text you pasted, using fixed word and field checks. It is not an AWS rating and does not predict AWS approval, search placement or sales.</p>`;

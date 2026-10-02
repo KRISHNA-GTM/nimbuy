@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://krishna-gtm.github.io/nimbuy/sitemap-index.xml
