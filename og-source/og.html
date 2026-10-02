@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Source for public/assets/og.png (1200x630). Render:
+     chrome --headless --screenshot=og.png --window-size=1200,630 --hide-scrollbars og.html -->
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: 'BG'; src: url('../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2'); font-weight: 200 800; }
+@font-face { font-family: 'PM'; src: url('../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2'); font-weight: 500; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 630px; background: #0c0914; overflow: hidden; }
+.c { position: relative; width: 1200px; height: 630px; padding: 64px 72px; color: #fff;
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 56px 56px; }
+.glow { position: absolute; right: -180px; bottom: -260px; width: 700px; height: 700px; background: radial-gradient(closest-side, rgba(139,62,230,.55), transparent); }
+.logo { height: 44px; position: relative; }
+.kicker { position: relative; margin-top: 64px; font: 500 20px/1 'PM'; letter-spacing: .16em; text-transform: uppercase; color: #3debb0; }
+.kicker::before { content: ''; display: inline-block; width: 28px; height: 2px; background: #3debb0; vertical-align: middle; margin-right: 14px; }
+h1 { position: relative; margin-top: 26px; font: 650 78px/1.02 'BG'; letter-spacing: -.03em; max-width: 980px; }
+h1 em { font-style: normal; color: #3debb0; }
+.foot { position: absolute; left: 72px; right: 72px; bottom: 56px; display: flex; gap: 56px; font: 500 20px/1.2 'PM'; color: #a89fbf; }
+.foot b { display: block; font: 650 44px/1 'BG'; color: #fff; letter-spacing: -.02em; margin-bottom: 8px; }
+</style></head>
+<body><div class="c"><div class="glow"></div>
+<img class="logo" src="../public/assets/nimbuy-wordmark-white.svg" alt="">
+<p class="kicker">AWS Marketplace listings</p>
+<h1>Four people read your listing before a deal. <em>Does it answer them?</em></h1>
+<div class="foot"><div><b>6,900+</b>live listings benchmarked</div><div><b>7</b>dimensions scored</div><div><b>Free</b>audit in your browser</div></div>
+</div></body></html>

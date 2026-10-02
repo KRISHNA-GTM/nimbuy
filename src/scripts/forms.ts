@@ -39,7 +39,7 @@ export function wire(form: HTMLFormElement) {
 
     const get = (n: string) => String(fd.get(n) ?? '').trim();
     const extra: string[] = [];
-    ['offer', 'listing_url', 'when', 'note', 'score', 'source'].forEach((n) => { if (get(n)) extra.push(`${n.replace('_', ' ')}: ${get(n)}`); });
+    ['offer', 'listing_url', 'when', 'note', 'source'].forEach((n) => { if (get(n)) extra.push(`${n.replace('_', ' ')}: ${get(n)}`); });
     const fields: Record<string, string> = {
       email: get('email'), firstname: get('name'), company: get('company'), website: get('website'),
       message: [get('message'), ...extra].filter(Boolean).join('\n'),
@@ -64,23 +64,3 @@ export function wire(form: HTMLFormElement) {
 
 document.querySelectorAll<HTMLFormElement>('form[data-form]').forEach(wire);
 
-// Audit result → "email me this report". The audit script renders #check-result itself;
-// this adds a capture box under the score without touching that script.
-const out = document.getElementById('check-result');
-const tpl = document.getElementById('capture-tpl') as HTMLTemplateElement | null;
-if (out && tpl) {
-  new MutationObserver(() => {
-    if (out.hidden || out.querySelector('.score-capture')) return;
-    const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
-    const f = node.querySelector('form') as HTMLFormElement;
-    const score = out.querySelector('.score-num strong')?.textContent ?? '';
-    (f.querySelector('[name=score]') as HTMLInputElement).value = score ? `${score}/100` : '';
-    out.querySelector('.score-cta')?.before(node);
-    wire(f);
-  }).observe(out, { childList: true, attributes: true, attributeFilter: ['hidden'] });
-}
-
-// Playbook gate: soft gate. The reader opens after the email is accepted.
-document.addEventListener('nimbuy:submitted', (e) => {
-  if ((e as CustomEvent).detail?.key === 'playbook') { try { sessionStorage.setItem('nb-playbook', '1'); } catch {} }
-});

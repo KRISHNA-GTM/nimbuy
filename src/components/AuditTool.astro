@@ -1,7 +1,6 @@
 ---
 // The audit UI. Its behaviour lives in public/js/listing-check.js and keys off these ids and
 // class names (check-form, check-input, check-result, .field-more, .check-error, data-example).
-const consent = 'I agree that Nimbuy may email me this report and store my details to follow up. See the privacy policy.';
 ---
 <div class="tool" id="check">
   <div class="tool-bar" aria-hidden="true"><i></i><i></i><i></i><span>nimbuy / listing-audit</span></div>
@@ -61,24 +60,7 @@ const consent = 'I agree that Nimbuy may email me this report and store my detai
   <div id="check-result" class="tool-body tool-result" tabindex="-1" hidden aria-live="polite"></div>
 </div>
 
-<template id="capture-tpl">
-  <div class="score-capture">
-    <h4>Want this report by email?</h4>
-    <p>We email the score and your three fixes. We will not email you your listing text, because we never receive it.</p>
-    <form data-form="check" data-subject="Audit report request" data-consent={consent} style="margin-top:0.6rem">
-      <input type="hidden" name="source" value="audit-result" />
-      <input type="hidden" name="score" value="" />
-      <input class="hp" type="text" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <div class="nl">
-        <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" aria-label="Work email" />
-        <button class="btn btn-primary btn-small" type="submit">Email me the report</button>
-      </div>
-      <label class="consent"><input type="checkbox" name="consent" required /><span>I agree to be emailed this report and the occasional Nimbuy newsletter. <a href="/privacy/">Privacy</a>.</span></label>
-      <p class="form-error" role="alert"></p>
-    </form>
-    <p class="form-ok" data-ok hidden tabindex="-1" style="margin-top:0.6rem">Done. Check your inbox.</p>
-  </div>
-</template>
 
+<script is:inline define:vars={{ offers: import.meta.env.BASE_URL.replace(/[/]$/, "") + "/offers/" }}>window.NB_OFFERS = offers;</script>
 <script is:inline src="/js/listing-benchmark.js" defer></script>
 <script is:inline src="/js/listing-check.js" defer></script>

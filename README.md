@@ -22,8 +22,9 @@ public/js/listing-*.js   the audit engine and benchmark, unchanged from the old 
 
 ```bash
 npm install
-npm run dev        # http://localhost:4321
-npm run build      # outputs dist/
+npm run dev        # http://localhost:4321 (no sub-path)
+npm run build      # outputs dist/ with the /nimbuy sub-path
+npm run preview    # serves the built site at /nimbuy/
 ```
 
 ## Add a blog post
@@ -41,12 +42,13 @@ hand; keep the blog posts consistent with them.
 
 ## Deploy
 
-GitHub repo Settings → Pages → Source: **GitHub Actions**. Push to `main`;
-`.github/workflows/deploy.yml` builds and publishes. See HUBSPOT-SETUP.md for forms, Cal and the
-nimbuy.io move.
+GitHub repo → Settings → Pages → **Build and deployment → Source: GitHub Actions** (the default, "Deploy from a branch", tries to build with Jekyll and fails). Push to `main`; `.github/workflows/deploy.yml` builds and publishes to https://krishna-gtm.github.io/nimbuy/.
+
+While the site lives in a project repo it is served from the `/nimbuy/` sub-path. `site.config.mjs` holds `BASE`; after the build an Astro hook prefixes internal links, so templates keep writing `/audit/`. Moving to nimbuy.io: see HUBSPOT-SETUP.md section 3.
+
+Do not commit `dist/` or `node_modules/` (`.gitignore` excludes them).
 
 ## Before you publish
 
-- Privacy policy names no registered address or country yet; add yours if you want it stated.
-- `public/assets/og.png` is the old design's preview image. Regenerate it.
 - Keep the site separate from the personal portfolio and from any employer material.
+- `public/assets/og.png` is rendered from `og-source/og.html`.

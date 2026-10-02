@@ -16,11 +16,10 @@ export const SITE = {
 
 // HubSpot Forms API (no API key needed). Leave portalId empty until the forms exist: every
 // form then falls back to a ready-written email to SITE.email, so nothing is lost.
-// Form field names to create in each HubSpot form are listed in HUBSPOT-SETUP.md.
+// Form field names to create in each HubSpot form are listed in HUBSPOT-SETUP.md. Free HubSpot sends you a notification per submission; it cannot send automated emails back to visitors, so no page promises one.
 export const HUBSPOT = {
   portalId: '',
   forms: {
-    check: '',      // audit result → "email me this report"
     brief: '',      // /book: offer brief or waitlist
     newsletter: '', // footer + blog
     playbook: '',   // playbook gate

@@ -4,8 +4,9 @@ import { SITE } from '../config';
 import Footer from '../components/Footer.astro';
 interface Props { title: string; description: string; noindex?: boolean; type?: 'website' | 'article'; }
 const { title, description, noindex = false, type = 'website' } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL; // '/' in dev, '/nimbuy/' in build while on project Pages
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
-const og = new URL('/assets/og.png', SITE.url).href;
+const og = new URL(baseUrl.replace(/[/]$/, '') + '/assets/og.png', SITE.url).href;
 const links = [
   { href: '/audit/', label: 'Free audit' },
   { href: '/offers/', label: 'Offers' },
@@ -14,7 +15,8 @@ const links = [
   { href: '/playbook/', label: 'Playbook' },
   { href: '/blog/', label: 'Blog' },
 ];
-const here = Astro.url.pathname;
+const prefix = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+const here = Astro.url.pathname.startsWith(prefix) ? Astro.url.pathname.slice(prefix.length) || '/' : Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="en">

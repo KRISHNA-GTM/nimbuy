@@ -1,7 +1,7 @@
 ---
 interface Props { source: string; dark?: boolean; }
 const { source, dark = false } = Astro.props;
-const consent = 'I agree to receive the Nimbuy newsletter and can unsubscribe at any time. See the privacy policy.';
+const consent = 'I agree to receive occasional emails from Nimbuy and can unsubscribe at any time. See the privacy policy.';
 ---
 <div>
   <form class:list={['nl', { 'nl-dark': dark }]} data-form="newsletter" data-subject="Newsletter signup" data-consent={consent}>
@@ -11,9 +11,9 @@ const consent = 'I agree to receive the Nimbuy newsletter and can unsubscribe at
     <button class="btn btn-mint btn-small" type="submit">Subscribe</button>
     <label class="consent" style="flex-basis:100%;margin-top:0.25rem">
       <input type="checkbox" name="consent" required />
-      <span>One email when something worth reading is published. Unsubscribe any time. <a href="/privacy/">Privacy</a>.</span>
+      <span>I agree to receive occasional emails from Nimbuy and can unsubscribe at any time. <a href="/privacy/">Privacy</a>.</span>
     </label>
     <p class="form-error" role="alert" style="flex-basis:100%"></p>
   </form>
-  <p class="form-ok" data-ok hidden tabindex="-1">You are on the list. Check your inbox to confirm.</p>
+  <p class="form-ok" data-ok hidden tabindex="-1">You are on the list. Thank you.</p>
 </div>

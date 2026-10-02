@@ -15,10 +15,14 @@ import { SITE } from '../config';
     <div class="wrap two-col">
       <div>
         <p class="label" style="margin-bottom:1rem">Option 1 · 30-minute call</p>
-        <div class="book-embed">
-          <iframe src={`${SITE.calUrl}?embed=true&layout=month_view`} title="Book a 30-minute call" loading="lazy"></iframe>
+        <div class="book-embed" id="cal-box">
+          <div class="cal-gate">
+            <p><strong>Pick a time on Cal.com.</strong></p>
+            <p>The calendar is loaded from Cal.com only when you ask for it, so nothing from them is set until then.</p>
+            <button class="btn btn-primary" type="button" id="cal-load">Load the calendar</button>
+            <p class="form-fallback">Or <a href={SITE.calUrl} target="_blank" rel="noopener">open it in a new tab</a>.</p>
+          </div>
         </div>
-        <p class="form-fallback">Calendar not loading? <a href={SITE.calUrl} target="_blank" rel="noopener">Open it in a new tab</a>, or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
       </div>
       <div>
         <p class="label" style="margin-bottom:1rem">Option 2 · Written brief</p>
@@ -27,3 +31,14 @@ import { SITE } from '../config';
     </div>
   </section>
 </Base>
+
+<script define:vars={{ cal: `${SITE.calUrl}?embed=true&layout=month_view` }}>
+  document.getElementById('cal-load')?.addEventListener('click', () => {
+    const box = document.getElementById('cal-box');
+    box.innerHTML = '';
+    const f = document.createElement('iframe');
+    f.src = cal;
+    f.title = 'Book a 30-minute call';
+    box.appendChild(f);
+  });
+</script>
