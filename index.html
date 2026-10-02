@@ -170,20 +170,30 @@
         <div class="band">
           <div class="band-head">
             <p class="label label-code label-lilac">// what <span data-bench="count">6,900+</span> live listings show</p>
-            <h2 id="proof-title">Most listings leave points on the table.</h2>
+            <h2 id="proof-title">It's almost never the writing. It's the empty boxes.</h2>
           </div>
           <ul class="proof-grid">
-            <li class="reveal"><p class="proof-num">99%</p><p>leave the use-cases field empty in the Discovery API</p></li>
+            <li class="reveal"><p class="proof-num" data-bench="stat-noAws">80%</p><p>name no AWS service, so an engineer can't judge fit</p></li>
             <li class="reveal"><p class="proof-num" data-bench="stat-unitsOnly">77%</p><p>price in "Units", which tells procurement nothing</p></li>
-            <li class="reveal"><p class="proof-num" data-bench="stat-noAws">80%</p><p>name no AWS service, so engineers can't judge fit</p></li>
-            <li class="reveal"><p class="proof-num" data-bench="stat-noSecurity">72%</p><p>score zero on security signals</p></li>
+            <li class="reveal"><p class="proof-num" data-bench="stat-noSecurity">72%</p><p>say nothing checkable about security</p></li>
+            <li class="reveal"><p class="proof-num">89%</p><p>carry no customer review on the listing</p></li>
           </ul>
           <figure class="market">
             <figcaption><strong>How live listings score</strong><span>Typical listing: <b data-bench="median">35</b> · Top 10% starts at <b data-bench="p90">52</b> · Best live listing: <b data-bench="max">84</b></span></figcaption>
             <div id="market-chart" class="market-chart"></div>
             <p class="market-note">Score your listing above and your position appears on this chart.</p>
           </figure>
-          <p class="proof-source">Live AWS Marketplace listings, read through the AWS Marketplace Discovery API (last refresh <span data-bench="snapshot">29 September 2026</span>): every SaaS listing in every category, at most two per seller. Public listing data only. This is the automatic keyword audit's score, not the hand-done audit's; a typical listing scores low because a missing fact scores zero. Scores on this chart use the 6 dimensions that apply to every product; agent-facing products are ranked on all 7 against the same listings.</p>
+          <!-- Zero-rates by score band, computed from data/allcat_scores_2026-09-29-all.csv
+               (SaaS, capped 2/seller, n=6,926). Recompute these four numbers if the benchmark
+               is ever refreshed — they are not generated from listing-benchmark.js. -->
+          <p style="margin-top:1.75rem;max-width:78ch;color:#e7e2f3;font-size:1rem;line-height:1.65">
+            What separates a 35 from an 84 isn't better prose. Among listings scoring in the thirties,
+            <strong>84%</strong> score zero for naming AWS services, <strong>76%</strong> zero for security
+            and <strong>63%</strong> zero for deployment. Among the highest scorers, those same three are
+            <strong>0%</strong>, <strong>11%</strong> and <strong>0%</strong>. The gap is three empty boxes,
+            not a rewrite — and only <strong>19</strong> listings in the whole set clear 70.
+          </p>
+          <p class="proof-source">Live AWS Marketplace listings read through the public Discovery API (last refresh <span data-bench="snapshot">29 September 2026</span>): every SaaS listing, at most two per seller, drawn from a 12,458-listing census across every delivery type. This is the automatic keyword check, not the hand audit — it scores a missing fact as zero, so use it to place a listing, not to grade one.</p>
         </div>
       </div>
     </section>
@@ -287,7 +297,7 @@
               <li>Co-sell kit if you have a live AWS deal: rep email and follow-up plan</li>
               <li>One round of revisions</li>
             </ul>
-            <p class="founding">Founding price for the first 3 clients. $750 after that.</p>
+            <p class="founding">Fixed price, paid upfront. One revision round within five business days of delivery.</p>
             <span class="offer-spacer"></span>
             <a class="btn btn-primary" data-enquiry="optimize" href="mailto:nimbuy@gmail.com?subject=Listing%20Optimize">Start the optimize</a>
           </article>
@@ -298,15 +308,15 @@
               <span class="price">$1,000<small> per listing</small></span>
             </div>
             <h3>Listing Launch</h3>
-            <p class="offer-term">Live in about 14 days · new listing</p>
+            <p class="offer-term">About 14 days from kickoff · new listing</p>
             <p class="offer-desc">Not on AWS Marketplace yet? I build your listing and take it live.</p>
             <ul>
               <li>Every listing field written to score high on all 7 dimensions</li>
               <li>Set up through temporary IAM access you grant and revoke, or handed to your team ready to enter</li>
-              <li>Tested with a $0.01 offer before real pricing goes live</li>
+              <li>Your whole buyer flow tested end to end before real pricing goes live</li>
               <li>I stay on until AWS approves it and every review issue is closed</li>
             </ul>
-            <p class="founding">Your engineers build the SaaS billing integration. The 14 days start once it's ready.</p>
+            <p class="founding">Fixed price, paid upfront. We agree the start date once your sign-up and billing integration is ready.</p>
             <span class="offer-spacer"></span>
             <a class="btn btn-primary" data-enquiry="launch" href="mailto:nimbuy@gmail.com?subject=Listing%20Launch">Plan the launch</a>
           </article>
@@ -314,10 +324,10 @@
           <article class="card offer reveal">
             <div class="offer-top">
               <span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19c2-6 6-10 14-14-1 8-5 12-11 14z"/><path d="M9 15l-3 3M8 11l5 5"/></svg></span>
-              <span class="price">Custom</span>
+              <span class="price">By application</span>
             </div>
             <h3>Marketplace Launch Sprint</h3>
-            <p class="offer-term">6–8 weeks · listing plus go-to-market</p>
+            <p class="offer-term">6–8 weeks · limited intake</p>
             <p class="offer-desc">For teams that need the listing to bring in pipeline.</p>
             <ul>
               <li>Listing Launch or Optimize, included</li>
@@ -328,9 +338,9 @@
               <li>Launch content: announcement post, one-pager and email</li>
               <li>Weekly check-ins with me, start to finish</li>
             </ul>
-            <p class="founding">Final price is fixed from your brief, before work starts.</p>
+            <p class="founding">Limited intake — tell me what you need and I'll say whether there's a slot.</p>
             <span class="offer-spacer"></span>
-            <a class="btn btn-primary" data-enquiry="sprint" href="mailto:nimbuy@gmail.com?subject=Marketplace%20Launch%20Sprint">Scope the sprint</a>
+            <a class="btn btn-primary" data-enquiry="sprint" href="mailto:nimbuy@gmail.com?subject=Marketplace%20Launch%20Sprint">Ask about a slot</a>
           </article>
         </div>
       </div>
