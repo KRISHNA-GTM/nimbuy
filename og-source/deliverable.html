@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- Source for public/assets/deliverable.png — the hero artifact.
+     Uses the REAL house CSS from teardown_docs.py (_house.css) with the declared-fictional
+     Northwind sample data, so the artifact format is genuine but no real seller is named.
+     Render: chrome --headless --screenshot --window-size=860,1120 deliverable.html -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_house.css">
+<style>
+  html,body { width:860px; height:1120px; background:#fff; }
+  body { padding:38px 44px; font-size:11.5pt; }
+  .top { display:flex; justify-content:space-between; align-items:baseline;
+         border-bottom:2px solid var(--ink); padding-bottom:7px; margin-bottom:16px; }
+  h1 { font-size:23pt; }
+</style></head>
+<body>
+  <div class="top"><span class="brand">Nimbuy · Four-Reader Check</span><span class="meta">Sample · Northwind Data Cloud</span></div>
+
+  <h1>Listing audit</h1>
+  <p class="sub">Northwind Data Cloud · a worked example, not a real seller</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Reviewer questions answered</div><div class="big">2<span style="font-size:14pt">/12</span></div><div class="meta">4 partly</div></div>
+    <div class="kpi"><div class="l">Listing score</div><div class="big">31<span style="font-size:14pt">/100</span></div><div class="meta">6 dimensions apply, 1–10 each</div></div>
+    <div class="kpi"><div class="l">Fix first</div><div style="font-size:11.5pt;font-weight:600;margin-top:6px">Security: no data region, no certification named in your copy</div></div>
+  </div>
+
+  <p>The security reviewer is served worst: your copy names no region, certification or retention
+  rule. Procurement is next — your only unit is “Units”, and nothing on the page says what one buys.</p>
+
+  <h2>What each reader finds</h2>
+  <table>
+    <tr><th style="width:19%">Reader</th><th style="width:10%">Answered</th><th style="width:36%">Your listing says</th><th>Missing</th></tr>
+    <tr><td><b>Security reviewer</b></td><td><span class="pill low">0/3</span></td><td>“Enterprise-grade security”</td><td>Data regions, a named report, retention and deletion.</td></tr>
+    <tr><td><b>Procurement analyst</b></td><td><span class="pill low">0/3</span></td><td>Pricing unit “Units”, description blank</td><td>What one unit buys, overage behaviour, support hours and SLA.</td></tr>
+    <tr><td><b>Technical evaluator</b></td><td><span class="pill mid">1/3</span></td><td>“Seamless integration with your stack”</td><td>Named AWS services, prerequisites, time to first result.</td></tr>
+    <tr><td><b>AI search</b></td><td><span class="pill mid">1/3</span></td><td>“the leading, most powerful AI platform”</td><td>A first sentence saying what it does and for whom; declared use cases.</td></tr>
+  </table>
+
+  <h2>Score by dimension</h2>
+  <table>
+    <tr><th style="width:27%">Dimension</th><th style="width:9%">Score</th><th style="width:17%"></th><th>Evidence from your listing</th></tr>
+    <tr><td><b>AI discoverability</b></td><td><b>4</b>/10</td><td><div class="bar"><i style="width:40%"></i></div></td><td>Brand-led first sentence; no buyer or job named.</td></tr>
+    <tr><td><b>Technical clarity</b></td><td><b>1</b>/10</td><td><div class="bar"><i style="width:10%"></i></div></td><td>No AWS service named anywhere in the copy.</td></tr>
+    <tr><td><b>Deployment clarity</b></td><td><b>2</b>/10</td><td><div class="bar"><i style="width:20%"></i></div></td><td>Nothing on what happens after Subscribe.</td></tr>
+    <tr><td><b>Security signals</b></td><td><b>0</b>/10</td><td><div class="bar"><i style="width:0%"></i></div></td><td>“Enterprise-grade security” — nothing checkable.</td></tr>
+    <tr><td><b>Pricing clarity</b></td><td><b>3</b>/10</td><td><div class="bar"><i style="width:30%"></i></div></td><td>One “Units” dimension, description empty.</td></tr>
+    <tr><td><b>Private-offer readiness</b></td><td><b>5</b>/10</td><td><div class="bar"><i style="width:50%"></i></div></td><td>Contract terms present; dimensions too vague to ramp.</td></tr>
+  </table>
+
+  <h2>Rewritten fields</h2>
+  <div class="field">
+    <div class="h">Short description <span>paste into the listing</span></div>
+    <div class="b">Lets finance and operations teams ask questions of their Amazon Redshift data in plain English and get a chart in under 10 seconds, with no SQL.</div>
+    <div class="old">Was: “Northwind is the leading, most powerful AI platform that transforms how enterprises work with data.”</div>
+  </div>
+  <div class="field">
+    <div class="h">Pricing dimension <span>1 of 1</span></div>
+    <div class="b">One named user with full query and dashboard access, billed monthly. Usage above your contracted users is billed at the same rate.</div>
+    <div class="old">Was: “Units” — description blank.</div>
+  </div>
+</body></html>

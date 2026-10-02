@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import { BENCH, CENSUS, GAPS, HAND, ABOVE_70 } from '../data/facts';
+const counts: [string, string, string][] = [
+  ['Pricing unit is only “Unit(s)”', '77%', 'Procurement cannot tell what one unit buys.'],
+  ['Names no AWS service anywhere', '80%', 'An engineer cannot judge fit from the page.'],
+  ['No security or compliance term', '74%', 'The first thing a security reviewer looks for.'],
+  ['No deployment or setup language', '69%', 'No path from Subscribe to a first result.'],
+  ['No customer review', '89%', 'No third-party proof on the page.'],
+  ['At least one pricing line with no real description', '27%', 'Blank, or it just repeats the name.'],
+  ['Declares MCP', '3%', 'Agent builders search for it by name.'],
+  ['Has a video', '5%', 'Rare enough to be a differentiator.'],
+];
+---
+<Base
+  title={`What ${CENSUS.totalLabel} AWS Marketplace listings leave out | Nimbuy`}
+  description={`A census of ${CENSUS.totalLabel} AWS Marketplace listings: 77% price only in “Units”, 80% name no AWS service, 74% have no security term. Public data, aggregates only, method and limits stated.`}
+>
+  <section class="page-hero" data-tone="dark">
+    <div class="wrap">
+      <p class="label">The data</p>
+      <h1>What {CENSUS.totalLabel} listings leave out.</h1>
+      <p class="lead">
+        Every live SaaS listing on AWS Marketplace, plus every container, a strided sample of machine
+        images and a large slice of professional services — read through the public Discovery API.
+        Counts of things anyone can check. Not opinions about anyone's product.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" data-tone="dark" style="padding-top:clamp(2rem,4vw,3rem)">
+    <div class="wrap">
+      <div class="facts">
+        {CENSUS.parts.map(([label, n]) => (
+          <div class="fact">
+            <p class="fact-n">{n.toLocaleString('en-US')}</p>
+            <h3>{label}</h3>
+          </div>
+        ))}
+        <div class="fact">
+          <p class="fact-n">{BENCH.nExact}</p>
+          <h3>scored, capped at two per seller</h3>
+          <p>The comparison set behind the free check.</p>
+        </div>
+        <div class="fact">
+          <p class="fact-n">{HAND.n}</p>
+          <h3>scored by hand, with evidence</h3>
+          <p>Median {HAND.median}/100. Best {HAND.max}.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">The counts</p>
+          <h2>Observable facts, {BENCH.nExact} SaaS listings.</h2>
+        </div>
+        <p class="section-aside">Capped at two listings per seller so large sellers cannot skew it. Snapshot {BENCH.snapshot}.</p>
+      </div>
+      <table class="ctable">
+        <thead><tr><th>What was checked</th><th style="text-align:right">Share</th><th style="text-align:left">Why it matters</th></tr></thead>
+        <tbody>
+          {counts.map(([what, pct, why]) => (
+            <tr><th>{what}</th><td class="hi">{pct}</td><td style="text-align:left;color:var(--muted)">{why}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">The finding</p>
+          <h2>Typical and top differ by three boxes.</h2>
+        </div>
+        <p class="section-aside">Share of listings scoring zero on each dimension, split by score band. Not writing quality — presence or absence.</p>
+      </div>
+      <div class="gapgrid">
+        {GAPS.map((g) => (
+          <article class="gapcard reveal">
+            <p class="pct">{g.typical}<em>%</em></p>
+            <h3>{g.key}: zero among typical listings</h3>
+            <p>{g.body}</p>
+            <div class="meter"><i style={`width:${g.typical}%`}></i></div>
+            <p style="margin-top:0.7rem;font-size:0.86rem">Among the best-scoring listings, that falls to <strong>{g.best}%</strong>.</p>
+          </article>
+        ))}
+      </div>
+      <p class="source-note">
+        Only <strong>{ABOVE_70}</strong> of {BENCH.nExact} listings score above 70 on the automatic check.
+        In the {HAND.n} listings I scored by hand, the single weakest dimension is security in {HAND.weakest[0][1]}%,
+        pricing in {HAND.weakest[1][1]}% and deployment in {HAND.weakest[2][1]}% — {HAND.topThreeShare}% of all of them.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <p class="label">Method</p>
+        <h2 style="margin-top:0.9rem;font-size:clamp(1.7rem,2.6vw,2.2rem)">How this was built.</h2>
+        <ul class="who-facts" style="margin-top:1.4rem">
+          <li><strong>Source:</strong> AWS Marketplace Discovery API, read-only, public listing data, snapshot {BENCH.snapshot}.</li>
+          <li><strong>Census:</strong> every SaaS listing and every container; machine images strided across the catalogue; professional services sampled, not censused.</li>
+          <li><strong>Scoring set:</strong> SaaS only, capped at two per seller, n&nbsp;=&nbsp;{BENCH.nExact}.</li>
+          <li><strong>Hand sample:</strong> {HAND.n} listings scored against the full rubric, each score carrying a quoted line of evidence.</li>
+          <li><strong>Publication rule:</strong> aggregates only. No single listing's score is ever published, and no client's score appears anywhere public.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="note">
+          <strong>Why SaaS only in the comparison?</strong>
+          <p style="margin-top:0.5rem">
+            Delivery type changes what a listing can score. A machine image earns pricing points a SaaS
+            contract structurally cannot, and professional services publish no public price at all, so
+            mixing them would make the number meaningless. The census is all categories; the comparison
+            is like for like.
+          </p>
+        </div>
+        <div class="note" style="margin-top:1rem">
+          <strong>What these numbers cannot tell you.</strong>
+          <p style="margin-top:0.5rem">
+            A keyword check produces false negatives: a listing can describe its security in words the
+            checker does not match, and I have not measured how often that happens. Read each percentage
+            as “missing, as far as a word-and-field check can tell”. The automatic score also correlates
+            only moderately with the hand rubric — good enough to rank a population, not to grade one listing.
+          </p>
+        </div>
+        <div class="note" style="margin-top:1rem">
+          <strong>Independent of AWS.</strong>
+          <p style="margin-top:0.5rem">
+            Nimbuy is not affiliated with AWS. None of this is an AWS rating, and none of it predicts
+            approval, search placement or sales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-tone="dark">
+    <div class="wrap two-col" style="align-items:center">
+      <div>
+        <p class="label">Your listing</p>
+        <h2 style="margin-top:0.9rem;max-width:17ch">Where does yours sit in this?</h2>
+      </div>
+      <div class="hero-actions" style="margin:0">
+        <a class="btn btn-primary" href="/check/">Check it free <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn-ghost" href="/rewrite/">The rewrite</a>
+      </div>
+    </div>
+  </section>
+</Base>

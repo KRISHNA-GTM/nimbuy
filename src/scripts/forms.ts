@@ -35,7 +35,7 @@ export function wire(form: HTMLFormElement) {
     const fd = new FormData(form);
     if (fd.get('website_hp')) return; // honeypot
     const consent = form.querySelector<HTMLInputElement>('input[name=consent]');
-    if (consent && !consent.checked) { if (err) err.textContent = 'Please tick the consent box so we can email you.'; return; }
+    if (consent && !consent.checked) { if (err) err.textContent = 'Please tick the consent box so I can reply.'; return; }
 
     const get = (n: string) => String(fd.get(n) ?? '').trim();
     const extra: string[] = [];

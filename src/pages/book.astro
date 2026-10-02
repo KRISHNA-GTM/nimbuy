@@ -3,30 +3,33 @@ import Base from '../layouts/Base.astro';
 import LeadForm from '../components/LeadForm.astro';
 import { SITE } from '../config';
 ---
-<Base title="Book a call or send a brief | Nimbuy" description="Book a 30-minute call on Google Meet, or send a short written brief and get a scope within one business day.">
+<Base title="Book a call | Nimbuy" description="Book a 30-minute call, or send a short written brief and get the scope and an invoice within one business day.">
   <section class="page-hero">
     <div class="wrap">
-      <p class="label">Book</p>
-      <h1>Talk it through, or just send the brief.</h1>
-      <p class="lead" style="max-width:56ch">Prefer to write it down? The brief form gets you a scope in writing within one business day. Prefer to talk? Pick a 30-minute slot.</p>
+      <p class="label">Talk</p>
+      <h1>Write it down, or talk it through.</h1>
+      <p class="lead">
+        The brief gets you a scope and an invoice in writing within one business day, with no call.
+        If you would rather talk first — or you need something bigger than the rewrite — book 30 minutes.
+      </p>
     </div>
   </section>
   <section class="section">
     <div class="wrap two-col">
       <div>
-        <p class="label" style="margin-bottom:1rem">Option 1 · 30-minute call</p>
+        <p class="label" style="margin-bottom:1rem">Written brief</p>
+        <LeadForm />
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:1rem">30-minute call</p>
         <div class="book-embed" id="cal-box">
           <div class="cal-gate">
             <p><strong>Pick a time on Cal.com.</strong></p>
-            <p>The calendar is loaded from Cal.com only when you ask for it, so nothing from them is set until then.</p>
+            <p style="font-size:0.93rem">The calendar loads from Cal.com only when you ask for it, so nothing from them is set in your browser until then.</p>
             <button class="btn btn-primary" type="button" id="cal-load">Load the calendar</button>
-            <p class="form-fallback">Or <a href={SITE.calUrl} target="_blank" rel="noopener">open it in a new tab</a>.</p>
+            <p class="form-fallback">Or <a href={SITE.calUrl} target="_blank" rel="noopener">open it in a new tab</a>, or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
           </div>
         </div>
-      </div>
-      <div>
-        <p class="label" style="margin-bottom:1rem">Option 2 · Written brief</p>
-        <LeadForm />
       </div>
     </div>
   </section>

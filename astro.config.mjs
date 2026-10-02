@@ -38,6 +38,6 @@ function prefixInternalLinks() {
 export default defineConfig({
   site: SITE_URL,
   base,
-  integrations: [sitemap({ filter: (p) => !p.includes('/playbook/read') }), prefixInternalLinks()],
+  integrations: [sitemap(), prefixInternalLinks()],
   build: { format: 'directory' },
 });

@@ -5,7 +5,7 @@ import { SITE_URL } from '../site.config.mjs';
 export const SITE = {
   name: 'Nimbuy',
   url: SITE_URL,
-  tagline: 'Listings that survive the buyer’s review',
+  tagline: 'AWS Marketplace listings, rewritten for the people who review them',
   email: 'nimbuy@gmail.com', // swap to hello@nimbuy.io after the domain move
   founder: 'Krishna Kumar T S',
   linkedin: 'https://www.linkedin.com/in/krishnakumar-ts/',
@@ -20,8 +20,6 @@ export const SITE = {
 export const HUBSPOT = {
   portalId: '',
   forms: {
-    brief: '',      // /book: offer brief or waitlist
-    newsletter: '', // footer + blog
-    playbook: '',   // playbook gate
+    brief: '', // the only form on the site: /rewrite and /book
   },
 };

@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import AuditTool from '../components/AuditTool.astro';
+import { BENCH, CENSUS } from '../data/facts';
+const dims: [string, string][] = [
+  ['AI discoverability', 'The buyer and the job, in plain words, in the first sentence'],
+  ['Technical clarity', 'AWS services and integrations named, with numbers an engineer can check'],
+  ['Deployment clarity', 'What happens after Subscribe, prerequisites, time to first result'],
+  ['Security signals', 'Regions, certifications, encryption, access, retention'],
+  ['Pricing clarity', 'A unit the buyer can count, described in words'],
+  ['Private-offer readiness', 'Dimensions a ramped enterprise offer could be built on'],
+  ['Protocol & category fit', 'Agent products only: MCP or A2A declared, APIs named'],
+];
+---
+<Base
+  title="Free AWS Marketplace listing check | Nimbuy"
+  description={`Paste your listing and get a score out of 100 across seven dimensions, your position against ${BENCH.nExact} live SaaS listings, and the three fixes worth the most points. Runs in your browser.`}
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label">Free check</p>
+        <h1 style="font-size:clamp(2.3rem,1.6rem + 2.8vw,3.6rem)">Score your listing in about a minute.</h1>
+        <p class="lead">
+          Paste the text from your public listing. You get a score out of 100, where it sits against
+          {' '}{BENCH.nExact} live SaaS listings, and the three fixes worth the most points.
+        </p>
+        <ul class="statline">
+          <li><strong>{BENCH.nExact}</strong>listings to compare against</li>
+          <li><strong>7</strong>dimensions</li>
+          <li><strong>0</strong>sent or stored</li>
+        </ul>
+      </div>
+      <div class="reveal"><AuditTool /></div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">What it measures</p>
+          <h2>Seven dimensions.</h2>
+        </div>
+        <p class="section-aside">
+          Six apply to every product. The seventh counts only if AI agents call yours, so you never
+          lose points for a box that does not apply to you.
+        </p>
+      </div>
+      <table class="ctable">
+        <tbody>
+          {dims.map(([d, w]) => <tr><th style="width:16rem">{d}</th><td style="text-align:left;color:var(--muted)">{w}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" data-tone="dark">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">Where you land</p>
+          <h2>Most listings sit around {BENCH.median}.</h2>
+        </div>
+        <p class="section-aside">Scored against {BENCH.nExact} live SaaS listings — like for like, since delivery type changes what a listing can score.</p>
+      </div>
+      <figure class="market">
+        <figcaption>
+          <strong>Live SaaS listings by score</strong>
+          <span>Typical <strong>{BENCH.median}</strong> · top 10% starts at <strong>{BENCH.p90}</strong> · best <strong>{BENCH.max}</strong></span>
+        </figcaption>
+        <div id="market-chart" class="market-chart"></div>
+        <p class="market-note">Score your listing above and your position appears here.</p>
+      </figure>
+      <details class="method">
+        <summary>How this is measured</summary>
+        <div>
+          <p>
+            This is an automatic keyword and field check, not the hand audit. It gives zero for anything
+            it cannot match, so it reads low by design — use it to place a listing, not to grade one.
+            The chart uses the six dimensions that apply to every product; agent products are ranked on
+            all seven against the same listings.
+          </p>
+          <p style="margin-top:0.7rem">
+            Source: AWS Marketplace Discovery API, snapshot {BENCH.snapshot}. Every live SaaS listing,
+            capped at two per seller, n = {BENCH.nExact}, drawn from a {CENSUS.totalLabel}-listing census.
+            Public data only; aggregates only. Nimbuy is independent of AWS and this is not an AWS rating.
+            It does not predict approval, search placement or sales.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col" style="align-items:center">
+      <div>
+        <p class="label">If the score is low</p>
+        <h2 style="margin-top:0.9rem;max-width:18ch">The check finds the gaps. The rewrite closes them.</h2>
+        <p style="margin-top:1.1rem">
+          The free check reads words and fields. The paid one is me reading your page as four reviewers
+          and writing what should be there instead.
+        </p>
+      </div>
+      <div class="hero-actions" style="margin:0">
+        <a class="btn btn-primary" href="/rewrite/">What you get for $500 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </section>
+</Base>

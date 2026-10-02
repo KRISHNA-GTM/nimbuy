@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { CENSUS } from '../data/facts';
+const prefix = import.meta.env.BASE_URL.replace(/[/]$/, '');
+const questions: [string, string][] = [
+  ['Security', 'Where is customer data stored, and can the customer choose?'],
+  ['Security', 'Which certifications or reports can you share?'],
+  ['Security', 'How long is data kept, how is it deleted, is it used to train models?'],
+  ['Procurement', 'What exactly is one pricing unit, in plain words?'],
+  ['Procurement', 'What happens if we go over what we bought?'],
+  ['Procurement', 'What support and SLA come with this price?'],
+  ['Technical', 'How is it deployed, and what do we need in place first?'],
+  ['Technical', 'Which AWS services and third-party tools does it connect to, by name?'],
+  ['Technical', 'How long from subscribing to the first working result?'],
+  ['AI search', 'In one sentence, what does it do and for whom?'],
+  ['AI search', 'Which specific use cases does it solve, in buyer words?'],
+  ['AI search', 'What evidence backs the claims — numbers with a date, named customers?'],
+];
+const faq = [
+  ['Who pastes the new copy in?', 'Your choice. Either you paste it — every field is written out, in order, ready to drop in — or you grant temporary IAM access, I enter it, and you revoke the access when the listing is live. I do not keep standing access to anyone’s account.'],
+  ['What if my listing is already good?', 'Then you will get a short audit and a small rewrite, and I will say so. Run the free check first — if it scores well, you may not need me, and I would rather tell you that than take $500.'],
+  ['Can you guarantee more deals?', 'No, and anyone who does is guessing. What I can tell you is which of the 12 questions your listing leaves unanswered right now, and what the answers should say.'],
+  ['What do you need from me?', 'Your listing URL, and honest answers on security, pricing and deployment — regions, certifications you can actually show, what one unit buys. Anything you cannot evidence stays off the listing.'],
+  ['What is not included?', 'Changing your pricing setup in Marketplace, building private offers, writing integration code, or anything that needs a claim you cannot prove. If a bigger piece of work is right for you, I will say so on a call, separately.'],
+  ['Why only one offer?', 'Because this is the one I do well and can deliver in three days alongside everything else. If you need a launch from scratch or a full go-to-market push, say so in the brief and we will talk about it properly rather than me pretending it is a package.'],
+];
+---
+<Base
+  title="The rewrite — $500, three business days | Nimbuy"
+  description="A hand audit of your AWS Marketplace listing against the 12 questions security, procurement, technical and AI-search reviewers ask, plus every field rewritten from facts you can prove. $500, fixed, three business days."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">The rewrite</p>
+      <h1>Audited by hand. Rewritten from your facts.</h1>
+      <p class="lead">One fixed-scope piece of work. You know the price, the scope and the date before anything starts.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col">
+      <div class="offer-card">
+        <p class="label">Fixed scope</p>
+        <p class="price" style="margin-top:0.8rem">$500</p>
+        <p class="price-anchor">
+          About five hours of specialist work. Paid upfront. Three business days from the day your
+          brief comes back — not from payment. One revision round within five business days of delivery.
+        </p>
+        <ul class="deliver">
+          <li><span><b>Four-reader audit, one page</b><span>Each of the 12 questions marked Yes, Partly or No, with your listing's own sentence quoted as the evidence. A mark I cannot quote is not a mark.</span></span></li>
+          <li><span><b>Seven-dimension score</b><span>Where the page stands now, and which dimension is costing you most.</span></span></li>
+          <li><span><b>Every field rewritten</b><span>Title, short description, long description, highlights, keywords and pricing-unit wording. Written out in full, in order.</span></span></li>
+          <li><span><b>Facts only</b><span>Every number carries a source or a date. Every claim is one you can show. Anything else is left out rather than softened.</span></span></li>
+        </ul>
+        <div class="excl">
+          <b>Not included</b>
+          <ul>
+            <li>Changing pricing setup or building private offers in your account</li>
+            <li>Writing integration or billing code</li>
+            <li>Any claim you cannot evidence</li>
+            <li>More than one revision round</li>
+          </ul>
+        </div>
+        <a class="btn btn-primary btn-block" href="#brief" style="margin-top:1.75rem">Send a brief</a>
+      </div>
+
+      <div>
+        <p class="label">What it looks like</p>
+        <h2 style="margin-top:0.9rem;font-size:clamp(1.7rem,2.6vw,2.2rem)">The deliverable</h2>
+        <figure class="artifact" style="margin-top:1.5rem">
+          <img src={`${prefix}/assets/deliverable.png`} width="860" height="1120" alt="Page one of a Nimbuy listing audit." loading="lazy" />
+          <figcaption>A worked example. Northwind is not a real seller — no client's score is ever published.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">The method</p>
+          <h2>The 12 questions</h2>
+        </div>
+        <p class="section-aside">Three per reader. These are the ones that stop or stall a deal. An empty field counts as No.</p>
+      </div>
+      <table class="ctable">
+        <thead><tr><th style="width:3rem">#</th><th style="width:9rem">Reader</th><th>Question</th></tr></thead>
+        <tbody>
+          {questions.map(([who, q], i) => (
+            <tr><th>{String(i + 1).padStart(2, '0')}</th><td style="text-align:left;color:var(--muted)">{who}</td><td style="text-align:left">{q}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="source-note">
+        The count you receive reads “answers X of 12, Y partly”. A standard AWS page element only counts as
+        an answer when it genuinely answers the question — a “request private offer” button does not tell
+        procurement what one unit buys.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <p class="label">How it runs</p>
+        <h2 style="margin-top:0.9rem;font-size:clamp(1.7rem,2.6vw,2.2rem)">Three days, four steps.</h2>
+        <ol class="deliver" style="margin-top:1.5rem">
+          <li><span><b>You send a brief</b><span>Listing URL, who buys it, and the security, pricing and deployment facts you can evidence.</span></span></li>
+          <li><span><b>I audit it by hand</b><span>Your page, read four times, once as each reader.</span></span></li>
+          <li><span><b>I rewrite every field</b><span>From your facts. Nothing invented, nothing softened.</span></span></li>
+          <li><span><b>You put it live</b><span>Paste it yourself, or grant temporary access and I enter it. Then one revision round.</span></span></li>
+        </ol>
+        <div class="note" style="margin-top:1.75rem">
+          <strong>Before you buy:</strong> run the <a href="/check/">free check</a> first. If your listing already
+          scores well, say so and keep your $500.
+        </div>
+      </div>
+      <LeadForm />
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap faq-wrap">
+      <div>
+        <p class="label">Questions</p>
+        <h2 style="margin-top:0.9rem">Before you ask.</h2>
+      </div>
+      <div class="faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
+    </div>
+  </section>
+
+  <section class="section" data-tone="dark">
+    <div class="wrap two-col" style="align-items:center">
+      <div>
+        <p class="label">Evidence</p>
+        <h2 style="margin-top:0.9rem;max-width:18ch">Built on {CENSUS.totalLabel} listings, not an opinion.</h2>
+      </div>
+      <div class="hero-actions" style="margin:0">
+        <a class="btn btn-primary" href="/data/">See the data <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </section>
+</Base>

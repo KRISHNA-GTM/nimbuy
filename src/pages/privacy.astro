@@ -7,22 +7,22 @@ import { SITE } from '../config';
     <div class="wrap">
       <p class="label">Legal</p>
       <h1>Privacy policy</h1>
-      <p class="byline"><span>Last updated 2 October 2026</span></p>
+      <p style="margin-top:1rem;font-size:0.9rem">Last updated 2 October 2026</p>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
       <div class="prose legal">
-        <p>This policy describes what the Nimbuy website does with personal data. It is written to match how the site works today, and it changes when the site does.</p>
+        <p>This describes what the Nimbuy website does with personal data. It matches how the site works today and changes when the site does.</p>
 
         <h2>Who is responsible</h2>
-        <p>Nimbuy, run by {SITE.founder}, decides why and how your data is used (the “controller”). Contact: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Nimbuy is independent and is not affiliated with Amazon Web Services.</p>
+        <p>Nimbuy, run by {SITE.founder}, decides why and how your data is used. Contact: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Nimbuy is independent and not affiliated with Amazon Web Services.</p>
 
         <h2>The short version</h2>
         <ul>
-          <li>The free audit runs in your browser. The listing text you paste is <strong>not sent to us and not stored</strong>.</li>
-          <li>We collect personal data only when you type it into a form or book a call.</li>
-          <li>We use no advertising trackers and no analytics cookies, and we do not sell personal data.</li>
+          <li>The free check runs in your browser. The listing text you paste is <strong>never sent to us and never stored</strong>.</li>
+          <li>We collect personal data only when you type it into the brief form or book a call.</li>
+          <li>No advertising trackers, no analytics cookies, no selling of personal data.</li>
           <li>You can ask to see, correct or delete your data at any time.</li>
         </ul>
 
@@ -31,64 +31,50 @@ import { SITE } from '../config';
           <thead><tr><th>When</th><th>What we receive</th><th>Why, and the legal basis</th></tr></thead>
           <tbody>
             <tr>
-              <td data-label="When">You send a brief or join the waitlist</td>
-              <td data-label="What we receive">Name, work email, company, website, listing URL, your message, the offer you chose</td>
-              <td data-label="Why, and the legal basis">To reply and scope the work. Legitimate interest in answering an enquiry you sent us; taking steps at your request before a contract.</td>
-            </tr>
-            <tr>
-              <td data-label="When">You get the playbook</td>
-              <td data-label="What we receive">Email, and optionally name and company</td>
-              <td data-label="Why, and the legal basis">To give you the playbook and to send occasional emails. Your consent, given by ticking the box.</td>
-            </tr>
-            <tr>
-              <td data-label="When">You subscribe to the newsletter</td>
-              <td data-label="What we receive">Email address</td>
-              <td data-label="Why, and the legal basis">To send occasional emails. Your consent, given by ticking the box.</td>
+              <td data-label="When">You send a brief</td>
+              <td data-label="What we receive">Name, work email, company, listing URL, your message</td>
+              <td data-label="Why">To reply, scope the work and invoice. Taking steps at your request before a contract; our legitimate interest in answering an enquiry you sent.</td>
             </tr>
             <tr>
               <td data-label="When">You book a call</td>
-              <td data-label="What we receive">Name, email, the time, and anything you write in the booking form. Held by Cal.com and the calendar provider.</td>
-              <td data-label="Why, and the legal basis">To hold the meeting. Taking steps at your request.</td>
+              <td data-label="What we receive">Name, email, the time, anything you write in the booking form. Held by Cal.com and the calendar provider.</td>
+              <td data-label="Why">To hold the meeting. Taking steps at your request.</td>
             </tr>
             <tr>
               <td data-label="When">You visit the site</td>
-              <td data-label="What we receive">Your IP address and request details, in the hosting provider’s server logs</td>
-              <td data-label="Why, and the legal basis">To deliver the site and keep it secure. Legitimate interest. We do not use these logs ourselves.</td>
+              <td data-label="What we receive">IP address and request details in the host's server logs</td>
+              <td data-label="Why">To deliver the site and keep it secure. Legitimate interest. We do not read these logs ourselves.</td>
             </tr>
           </tbody>
         </table>
-        <p>You do not have to give us any of this to read the site or run the audit. Where we rely on consent you can withdraw it at any time; that does not affect what we did before.</p>
+        <p>You do not have to give us anything to read the site or run the free check.</p>
 
         <h2>Who processes it for us</h2>
         <ul>
-          <li><strong>HubSpot</strong> stores contacts and form submissions and sends our emails. We use HubSpot’s forms interface only; we do not load HubSpot’s tracking script on this site.</li>
-          <li><strong>Google</strong> provides our email inbox, calendar and the Google Meet link for calls.</li>
-          <li><strong>Cal.com</strong> handles booking. Its calendar is loaded <strong>only when you press “Load the calendar”</strong> on the Book page. Until then nothing is requested from Cal.com, and it may set its own cookies once loaded.</li>
-          <li><strong>GitHub Pages</strong> hosts this website and processes the server logs described above.</li>
+          <li><strong>HubSpot</strong> stores brief submissions as contact records. We use the forms interface only and do not load HubSpot's tracking script on this site.</li>
+          <li><strong>Google</strong> provides our email, calendar and the meeting link.</li>
+          <li><strong>Cal.com</strong> handles booking. Its calendar loads <strong>only when you press "Load the calendar"</strong>; until then nothing is requested from Cal.com. Once loaded it may set its own cookies.</li>
+          <li><strong>GitHub Pages</strong> hosts the site and keeps the server logs described above.</li>
         </ul>
-        <p>These providers may process data outside your country, including in the United States. Where that applies they rely on the transfer safeguards the law provides, such as standard contractual clauses. We do not sell or rent personal data to anyone.</p>
+        <p>These providers may process data outside your country, including in the United States, relying on the transfer safeguards the law provides. We do not sell or rent personal data.</p>
 
-        <h2>Cookies and similar technologies</h2>
-        <p>The site itself sets no cookies and loads no third-party fonts or scripts for tracking. Fonts are served from the same site. The only third-party content you can choose to load is the Cal.com calendar, described above.</p>
+        <h2>Cookies</h2>
+        <p>This site sets no cookies and loads no third-party fonts or tracking scripts. Fonts are served from the same site. The only third-party content you can load is the Cal.com calendar, and only by clicking.</p>
 
-        <h2>How long we keep data</h2>
+        <h2>How long we keep it</h2>
         <ul>
-          <li><strong>Enquiries and booking records:</strong> up to 24 months after our last contact. If we work together, until the work and any follow-up end, and then for as long as the law requires us to keep business records.</li>
-          <li><strong>Newsletter and playbook contacts:</strong> until you unsubscribe or ask us to delete you.</li>
+          <li><strong>Enquiries and bookings:</strong> up to 24 months after our last contact. If we work together, until the work and any follow-up end, then as long as the law requires for business records.</li>
           <li>We delete earlier if you ask.</li>
         </ul>
 
         <h2>Your rights</h2>
-        <p>Depending on where you live, you can ask us to give you a copy of your data, correct it, delete it, restrict or object to how we use it, or move it. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will answer within one month. Every marketing email has an unsubscribe link. If you think we have handled your data badly you can complain to your local data protection authority; we would like the chance to put it right first.</p>
+        <p>Depending on where you live, you can ask for a copy of your data, or ask us to correct it, delete it, restrict it, or move it. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will answer within one month. If you think we have handled your data badly you can complain to your local data protection authority; we would like the chance to put it right first.</p>
 
-        <h2>Security</h2>
-        <p>Data is held in the providers named above, which use encryption in transit and access controls. No system is perfectly secure, so we keep what we hold to the minimum above.</p>
-
-        <h2>Children</h2>
-        <p>The site is for business users. It is not directed at anyone under 18, and we do not knowingly collect their data.</p>
+        <h2>Security and children</h2>
+        <p>Data sits with the providers named above, which use encryption in transit and access controls. No system is perfectly secure, so we keep what we hold to the minimum above. The site is for business users and is not directed at anyone under 18.</p>
 
         <h2>Changes</h2>
-        <p>If this policy changes in a way that matters, the date at the top changes. For a material change we will say so on this page.</p>
+        <p>If this changes in a way that matters, the date at the top changes.</p>
       </div>
     </div>
   </section>

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /nimbuy/playbook/read/
 
 Sitemap: https://krishna-gtm.github.io/nimbuy/sitemap-index.xml

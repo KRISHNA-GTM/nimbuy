@@ -3,25 +3,30 @@
      chrome --headless --screenshot=og.png --window-size=1200,630 --hide-scrollbars og.html -->
 <html><head><meta charset="utf-8">
 <style>
-@font-face { font-family: 'BG'; src: url('../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2'); font-weight: 200 800; }
-@font-face { font-family: 'PM'; src: url('../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2'); font-weight: 500; }
+@font-face { font-family: 'IS'; src: url('../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2'); font-weight: 400; }
+@font-face { font-family: 'ISans'; src: url('../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2'); font-weight: 400 700; }
 * { box-sizing: border-box; margin: 0; }
-html, body { width: 1200px; height: 630px; background: #0c0914; overflow: hidden; }
-.c { position: relative; width: 1200px; height: 630px; padding: 64px 72px; color: #fff;
-  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size: 56px 56px; }
-.glow { position: absolute; right: -180px; bottom: -260px; width: 700px; height: 700px; background: radial-gradient(closest-side, rgba(139,62,230,.55), transparent); }
-.logo { height: 44px; position: relative; }
-.kicker { position: relative; margin-top: 64px; font: 500 20px/1 'PM'; letter-spacing: .16em; text-transform: uppercase; color: #3debb0; }
-.kicker::before { content: ''; display: inline-block; width: 28px; height: 2px; background: #3debb0; vertical-align: middle; margin-right: 14px; }
-h1 { position: relative; margin-top: 26px; font: 650 78px/1.02 'BG'; letter-spacing: -.03em; max-width: 980px; }
-h1 em { font-style: normal; color: #3debb0; }
-.foot { position: absolute; left: 72px; right: 72px; bottom: 56px; display: flex; gap: 56px; font: 500 20px/1.2 'PM'; color: #a89fbf; }
-.foot b { display: block; font: 650 44px/1 'BG'; color: #fff; letter-spacing: -.02em; margin-bottom: 8px; }
+html, body { width: 1200px; height: 630px; background: #faf9fc; overflow: hidden; }
+.c { position: relative; width: 1200px; height: 630px; padding: 62px 70px; color: #1a1527;
+     font-family: 'ISans', sans-serif; display: flex; flex-direction: column; }
+.logo { height: 40px; width: auto; align-self: flex-start; }
+.kicker { margin-top: 58px; font-size: 19px; font-weight: 600; letter-spacing: .14em;
+          text-transform: uppercase; color: #5b21b6; display: flex; align-items: center; gap: 14px; }
+.kicker::before { content: ''; width: 30px; height: 1.5px; background: currentColor; }
+h1 { margin-top: 24px; font-family: 'IS', serif; font-weight: 400; font-size: 82px; line-height: 1.02;
+     letter-spacing: -.02em; max-width: 15ch; }
+.foot { margin-top: auto; display: flex; gap: 60px; font-size: 19px; color: #5d5770;
+        border-top: 1px solid #ddd8e8; padding-top: 26px; }
+.foot b { display: block; font-family: 'IS', serif; font-weight: 400; font-size: 42px;
+          color: #1a1527; letter-spacing: -.02em; margin-bottom: 4px; }
 </style></head>
-<body><div class="c"><div class="glow"></div>
-<img class="logo" src="../public/assets/nimbuy-wordmark-white.svg" alt="">
-<p class="kicker">AWS Marketplace listings</p>
-<h1>Four people read your listing before a deal. <em>Does it answer them?</em></h1>
-<div class="foot"><div><b>6,900+</b>live listings benchmarked</div><div><b>7</b>dimensions scored</div><div><b>Free</b>audit in your browser</div></div>
+<body><div class="c">
+<img class="logo" src="../public/assets/nimbuy-wordmark.svg" alt="">
+<p class="kicker">AWS Marketplace</p>
+<h1>Four people read your listing before a deal.</h1>
+<div class="foot">
+  <div><b>12,458</b>listings read to build this</div>
+  <div><b>12</b>reviewer questions</div>
+  <div><b>3 days</b>from brief to rewritten</div>
+</div>
 </div></body></html>

@@ -1,196 +1,171 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import AuditTool from '../components/AuditTool.astro';
-import MarketFacts from '../components/MarketFacts.astro';
-import Offers from '../components/Offers.astro';
-import Faq from '../components/Faq.astro';
-import CtaBand from '../components/CtaBand.astro';
-import { BENCH } from '../data/facts';
+import FourReaders from '../components/FourReaders.astro';
 import { SITE } from '../config';
-
-const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
-const readers = [
-  ['Security reviewer', 'Where is customer data stored? Which reports can you share? How is data deleted?', '01'],
-  ['Procurement', 'What exactly is one pricing unit? What happens if we go over? What support comes with the price?', '02'],
-  ['Technical evaluator', 'How is it deployed? Which AWS services does it connect to? How long to the first working result?', '03'],
-  ['AI search', 'What does it do, for whom, and what evidence backs the claims? Written so a model can summarise it.', '04'],
+import { BENCH, CENSUS, GAPS, HAND, ABOVE_70 } from '../data/facts';
+const prefix = import.meta.env.BASE_URL.replace(/[/]$/, '');
+const faq = [
+  ['What do I actually get?', 'A one-page audit marking each of the 12 reviewer questions Yes, Partly or No with your own listing text quoted as evidence, plus every listing field rewritten and ready to use. Three business days.'],
+  ['Do you need access to our AWS account?', 'No. You paste the new copy yourself, or you grant temporary access and I enter it — your choice. Nothing I do needs standing access.'],
+  ['What if we cannot prove a claim?', 'It stays off the listing. I write from facts you can evidence: a certification you can show, a region you actually use, a number with a date. That rule is the whole product.'],
+  ['Is this an AWS score or an AWS service?', 'Neither. Nimbuy is independent of AWS. The check is my own read of your public listing text, and it does not predict AWS approval, search placement or sales.'],
+  ['Our product is not an AI agent. Does this apply?', 'Yes. Six of the seven dimensions apply to any product on Marketplace. The agent dimension only counts if you tick that box.'],
+  ['Why not have AI rewrite it?', 'A model will happily write “enterprise-grade security” for you. It does not know which reviewer question your listing leaves open, or which of your claims you can actually back up.'],
 ];
 ---
 <Base
-  title="Nimbuy | AWS Marketplace listing audit, rewrite and launch"
-  description={`Free AWS Marketplace listing audit: a score out of 100 on 7 dimensions, your position against ${BENCH.count} live listings, and your top 3 fixes. Then Nimbuy rewrites or launches it.`}
+  title="Nimbuy — your AWS Marketplace listing, rewritten for the people who review it"
+  description={`Four people read your AWS Marketplace listing before a deal. Most listings answer none of them. A hand audit against 12 reviewer questions plus a full rewrite, in three business days. Built on a census of ${CENSUS.totalLabel} listings.`}
 >
-  <section class="hero dark grid-bg">
+  <!-- HERO: copy left, the real deliverable right -->
+  <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="label">AWS Marketplace listings</p>
-        <h1>Four people read your listing before a deal. <em>Does it answer them?</em></h1>
-        <p class="lead">Security, procurement, a technical evaluator and AI search each look for different things. Score your listing in about a minute, then close the gaps.</p>
+        <p class="label">AWS Marketplace</p>
+        <h1>Four people read your listing before a deal.</h1>
+        <p class="lead">
+          A security reviewer, a procurement analyst, an engineer, and an AI assistant summarising
+          you to a buyer who never opens the page. I read your listing as all four, then rewrite it
+          so each one finds their answer.
+        </p>
         <div class="hero-actions">
-          <a class="btn btn-mint" href="#check">Score my listing <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          <a class="btn btn-ghost-dark" href="/offers/">See offers</a>
+          <a class="btn btn-primary" href="/rewrite/">What you get for $500 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a class="btn btn-ghost" href="/check/">Check your listing free</a>
         </div>
         <ul class="statline">
-          <li><strong class="num">{BENCH.count}</strong>live listings benchmarked</li>
-          <li><strong class="num">7</strong>dimensions scored</li>
-          <li><strong>Free</strong>runs in your browser</li>
+          <li><strong>{CENSUS.totalLabel}</strong>listings read to build this</li>
+          <li><strong>12</strong>reviewer questions</li>
+          <li><strong>3 days</strong>from brief to rewritten</li>
         </ul>
       </div>
-      <div class="reveal"><AuditTool /></div>
+      <figure class="artifact reveal">
+        <img src={`${prefix}/assets/deliverable.png`} width="860" height="1120" alt="Page one of a Nimbuy listing audit: reviewer questions answered, listing score, what each of the four readers finds, score by dimension, and rewritten fields." fetchpriority="high" />
+        <figcaption>Page one of the audit. Worked example — Northwind is not a real seller.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="section">
+  <!-- THE FOUR READERS: sticky-pin -->
+  <section class="section tint">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="label">The four readers</p>
-          <h2>A listing is read by people who never talk to each other.</h2>
+          <p class="label">Who reads it</p>
+          <h2>Four readers. None of them talk to each other.</h2>
         </div>
-        <p class="section-aside">Most listings are written for none of them. Each reader has three questions that stop or stall a deal.</p>
+        <p class="section-aside">Most listings are written once, at launch, for a buyer who does not exist. These four are the ones who actually decide.</p>
       </div>
-      <div class="cards-2">
-        {readers.map(([t, q, i]) => (
-          <article class="card reveal">
-            <span class="idx">READER {i}</span>
-            <h3>{t}</h3>
-            <p>{q}</p>
+      <FourReaders />
+    </div>
+  </section>
+
+  <!-- THE EVIDENCE -->
+  <section class="section" data-tone="dark">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">What the listings show</p>
+          <h2>It is almost never the writing. It is three empty boxes.</h2>
+        </div>
+        <p class="section-aside">
+          I read every live SaaS listing on AWS Marketplace and scored {BENCH.nExact} of them,
+          capped at two per seller. The gap between a typical listing and a top one is not prose quality.
+        </p>
+      </div>
+      <div class="gapgrid">
+        {GAPS.map((g) => (
+          <article class="gapcard reveal">
+            <p class="pct">{g.typical}<em>%</em></p>
+            <h3>of typical listings {g.head}</h3>
+            <p>{g.body}</p>
+            <div class="meter"><i style={`width:${g.typical}%`}></i></div>
+            <p style="margin-top:0.6rem;font-size:0.84rem">Among the best-scoring listings: <strong>{g.best}%</strong></p>
           </article>
         ))}
       </div>
-      <p style="margin-top:1.5rem"><a class="arrow-link" href="/blog/the-four-readers-of-your-aws-marketplace-listing/">The 12 questions, in full →</a></p>
+      <p class="source-note">
+        Only <strong>{ABOVE_70} of {BENCH.nExact}</strong> listings score above 70. Separately, I hand-scored {HAND.n} listings
+        across every delivery type: the single weakest area is security in {HAND.weakest[0][1]}%, pricing in {HAND.weakest[1][1]}%
+        and deployment in {HAND.weakest[2][1]}% — so in {HAND.topThreeShare}% of listings the worst gap is one of those three.
+      </p>
+      <p style="margin-top:1.5rem"><a class="arrow-link" href="/data/">How the numbers were built →</a></p>
     </div>
   </section>
 
-  <section class="section dark grid-bg">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="label">What {BENCH.count} live listings show</p>
-          <h2>Most listings leave the basics off the page.</h2>
+  <!-- THE OFFER -->
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <p class="label">The rewrite</p>
+        <h2 style="margin-top:0.9rem">One thing, done properly.</h2>
+        <p style="margin-top:1.2rem;font-size:1.1rem">
+          I audit your listing by hand against the 12 questions those four readers ask, quote your own
+          text as evidence for every mark, then rewrite every field from facts you can prove.
+        </p>
+        <p style="margin-top:1rem">
+          Not a subscription, not a dashboard, not a model's draft. One person reading your page the way
+          a reviewer will, and writing what should be there instead.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/rewrite/">See the full scope</a>
         </div>
-        <p class="section-aside">Counts of fields anyone can check on the public listing. Not opinions about any product.</p>
       </div>
-      <MarketFacts />
-      <figure class="market">
-        <figcaption><strong>How live listings score on the automatic audit</strong><span>Typical: <b>{BENCH.median}</b> · Top 10% starts at <b>{BENCH.p90}</b> · Best: <b>{BENCH.max}</b></span></figcaption>
-        <div id="market-chart" class="market-chart"></div>
-        <p class="market-note">Score your listing above and your position appears on this chart.</p>
-      </figure>
-      <p style="margin-top:1.5rem"><a class="arrow-link" href="/insights/">All the numbers and how they were built →</a></p>
+      <div class="offer-card">
+        <p class="label">Listing rewrite</p>
+        <p class="price" style="margin-top:0.8rem">$500<em>fixed</em></p>
+        <p class="price-anchor">About five hours of specialist work. Paid upfront, one revision round, three business days from your brief.</p>
+        <ul class="deliver">
+          <li><span><b>The audit</b><span>12 reviewer questions marked Yes / Partly / No, each with your listing's own words quoted.</span></span></li>
+          <li><span><b>The rewrite</b><span>Title, short and long description, highlights, keywords, pricing wording — every field, written out.</span></span></li>
+          <li><span><b>Your facts only</b><span>Anything you cannot evidence stays off the page.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="section tint">
+    <div class="wrap who">
+      <img src={`${prefix}/assets/krishna-720.jpg`} width="720" height="832" alt={`Portrait of ${SITE.founder}`} loading="lazy" decoding="async" />
+      <div>
+        <p class="label">Who does the work</p>
+        <h2 style="margin-top:0.8rem;font-size:clamp(1.8rem,3vw,2.4rem)">{SITE.founder}</h2>
+        <p style="margin-top:0.8rem">
+          Every audit and every rewrite is mine, by hand. I built the {CENSUS.totalLabel}-listing census this site
+          runs on, and I work on Marketplace listings, AWS competency documentation and partner go-to-market.
+        </p>
+        <ul class="who-facts">
+          <li>AWS Certified Cloud Practitioner, plus AWS Partner Sales and Technical accreditations</li>
+          <li>No case studies yet — this is a new practice, and I would rather say so than imply otherwise</li>
+        </ul>
+        <div class="who-links">
+          <a class="btn btn-ghost btn-small" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost btn-small" href={SITE.credly} target="_blank" rel="noopener">Verify badges</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="label">One rewrite</p>
-          <h2>Same product. Different page.</h2>
-        </div>
-        <p class="section-aside">A made-up product, scored by the same audit. The rewrite uses only facts the seller could prove.</p>
+    <div class="wrap faq-wrap">
+      <div>
+        <p class="label">Questions</p>
+        <h2 style="margin-top:0.9rem">Straight answers.</h2>
       </div>
-      <div class="ba">
-        <article class="ba-card ba-before reveal">
-          <p class="ba-tag">Before</p>
-          <h3>Northwind AI Platform</h3>
-          <p class="ba-short">Northwind is the leading, most powerful AI platform that transforms how enterprises work with data.</p>
-          <ul>
-            <li>Revolutionary AI-powered insights</li>
-            <li>Seamless integration with your stack</li>
-            <li>Enterprise-grade security</li>
-          </ul>
-          <p class="ba-meta">Pricing unit: Units · no price description · private offers off</p>
-        </article>
-        <div class="ba-score" aria-label="Score before and after">
-          <span><small>BEFORE</small><strong data-sample-score="before">12</strong></span>
-          <span class="ba-arrow" aria-hidden="true">→</span>
-          <span><small>AFTER</small><strong class="ba-after-num" data-sample-score="after">88</strong></span>
-        </div>
-        <article class="ba-card ba-after reveal">
-          <p class="ba-tag ba-tag-after">After</p>
-          <h3>Northwind Data Cloud – plain-English analytics for Amazon Redshift</h3>
-          <p class="ba-short">Lets finance and operations teams ask questions of their Amazon Redshift data in plain English and get a chart in under 10 seconds, with no SQL.</p>
-          <ul>
-            <li>Connects to Amazon Redshift and PostgreSQL in about 15 minutes</li>
-            <li>SOC 2 Type II; data stays in your AWS region and is never used for training</li>
-            <li>Priced per user per month: 1 unit = 1 named user</li>
-          </ul>
-          <p class="ba-meta">Pricing unit: Users · price line: “One named user with full query and dashboard access, billed monthly”</p>
-        </article>
-      </div>
-      <p style="margin-top:1.5rem"><a class="arrow-link" href="/sample/">See the full sample deliverable →</a></p>
+      <div class="faq">{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="label">Offers</p>
-          <h2>Pick the level of help.</h2>
-        </div>
-        <p class="section-aside">Fixed scope, fixed price, written down before work starts.</p>
+  <section class="section" data-tone="dark">
+    <div class="wrap two-col" style="align-items:center">
+      <div>
+        <p class="label">Start</p>
+        <h2 style="margin-top:0.9rem;max-width:17ch">Find out which reader your listing fails first.</h2>
       </div>
-      <Offers />
-      <p style="margin-top:1.5rem"><a class="arrow-link" href="/offers/">Compare offers in detail →</a></p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="who reveal">
-        <picture class="who-photo">
-          <source type="image/webp" srcset="/assets/krishna-720.webp" />
-          <img src="/assets/krishna-720.jpg" width="720" height="832" alt={`Portrait of ${SITE.founder}`} loading="lazy" decoding="async" />
-        </picture>
-        <div class="who-copy">
-          <p class="label">Who does the work</p>
-          <h2>{SITE.founder}</h2>
-          <p class="who-role">Founder, Nimbuy · every audit and rewrite is done by hand</p>
-          <ul class="who-facts">
-            <li>Built the benchmark: <strong>{BENCH.count} live listings</strong> read through the AWS Marketplace Discovery API</li>
-            <li>Works on AWS Marketplace listings, AWS competency documentation and partner go-to-market</li>
-            <li><strong>AWS Certified Cloud Practitioner</strong>, plus AWS Partner Sales and Technical accreditations</li>
-          </ul>
-          <div class="who-links">
-            <a class="btn btn-outline btn-small" href="/about/">About</a>
-            <a class="btn btn-outline btn-small" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn btn-outline btn-small" href={SITE.credly} target="_blank" rel="noopener">Verify badges on Credly</a>
-          </div>
-        </div>
+      <div class="hero-actions" style="margin:0">
+        <a class="btn btn-primary" href="/check/">Check it free <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn-ghost" href="/book/">Book a call</a>
       </div>
     </div>
   </section>
-
-  {posts.length > 0 && (
-    <section class="section" style="padding-top:0">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="label">From the blog</p>
-            <h2>Findings, not filler.</h2>
-          </div>
-          <p class="section-aside"><a class="arrow-link" href="/blog/">All posts →</a></p>
-        </div>
-        <div class="cards-3">
-          {posts.map((p) => (
-            <a class="card card-link post-card reveal" href={`/blog/${p.id}/`}>
-              <span class="idx tag">{p.data.tag.toUpperCase()}</span>
-              <h3>{p.data.title}</h3>
-              <p>{p.data.description}</p>
-              <div class="meta"><span>{p.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span><span>{p.data.readMinutes} min read</span></div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <section class="section" style="padding-top:0">
-    <Faq />
-  </section>
-
-  <CtaBand />
 </Base>
