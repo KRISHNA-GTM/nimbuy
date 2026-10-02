@@ -84,7 +84,7 @@
     // 1. AI discoverability: can a summariser tell who it is for and what job it does?
     const words = title.split(/\s+/).filter(Boolean).length;
     check('ai', words >= 4 && title.length <= 110 ? 2 : words >= 2 ? 1 : 0, 2,
-      'Put the job in the title, not just the brand: "Brand – natural-language analytics for Amazon Redshift".');
+      'Put the job in the title, not just the brand: "Brand: natural-language analytics for Amazon Redshift".');
     const hypeOpen = countWords(sentences(short)[0] || '', W.hype) > 0;
     check('ai', short && !hypeOpen ? 2 : 0, 2, short
       ? 'Your short description opens with hype. Open with the buyer and the result they get.'
@@ -208,7 +208,7 @@
     const bars = BANDS.map((c, i) => {
       const h = c ? Math.max(2, (c / top) * (H - 28)) : 0;
       const on = you !== undefined && Math.floor(Math.min(99, you) / 5) === i;
-      return `<rect class="mc-bar${on ? ' mc-on' : ''}" x="${i * bw + 1}" y="${H - 16 - h}" width="${bw - 2}" height="${h}" rx="2"><title>Score ${i * 5}–${i * 5 + 4}: ${c} listings</title></rect>`;
+      return `<rect class="mc-bar${on ? ' mc-on' : ''}" x="${i * bw + 1}" y="${H - 16 - h}" width="${bw - 2}" height="${h}" rx="2"><title>Score ${i * 5} to ${i * 5 + 4}: ${c} listings</title></rect>`;
     }).join('');
     const med = `<line class="mc-med" x1="${x(D.median)}" x2="${x(D.median)}" y1="6" y2="${H - 16}"/><text class="mc-lbl" x="${x(D.median) + 4}" y="14">typical ${D.median}</text>`;
     const me = you === undefined ? '' : `<line class="mc-you" x1="${x(you)}" x2="${x(you)}" y1="6" y2="${H - 16}"/><text class="mc-lbl mc-you-lbl" x="${Math.min(x(you) + 4, W - 50)}" y="28">yours ${you}</text>`;
@@ -226,7 +226,7 @@
       unit: 'Units', dimDesc: '', model: 'contract', privateOffer: false
     },
     after: {
-      title: 'Northwind Data Cloud – plain-English analytics for Amazon Redshift',
+      title: 'Northwind Data Cloud: plain-English analytics for Amazon Redshift',
       short: 'Lets finance and operations teams ask questions of their Amazon Redshift data in plain English and get a chart in under 10 seconds, with no SQL.',
       highlights: 'Connects to Amazon Redshift and PostgreSQL in about 15 minutes\nSOC 2 Type II; data stays in your AWS region and is never used for training\nPriced per user per month: 1 unit = 1 named user',
       long: 'Setup: subscribe on AWS Marketplace, connect a read-only IAM role, and invite your team. Most teams run their first query within 30 minutes. Security: data is encrypted in transit (TLS 1.2) and at rest with AWS KMS; SSO via SAML or OIDC; every query is written to an audit log. Pricing: each unit is one named user per month. Agents and apps can query Northwind through its REST API, including from Amazon Bedrock.',

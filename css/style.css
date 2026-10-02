@@ -1,4 +1,4 @@
-/* Krishna Kumar T S — portfolio
+/* Krishna Kumar T S , portfolio
    Light, minimal. Lavender-white ground, deep violet accent, Fraunces for headings,
    Manrope for reading, JetBrains Mono for small section labels. Generous line spacing. */
 
@@ -23,7 +23,7 @@
 
   --wrap: 1120px;
   --gutter: clamp(1rem, 4vw, 2rem);
-  --section: clamp(3rem, 5.5vw, 4.5rem);
+  --section: clamp(2rem, 3.2vw, 2.75rem);
   --radius: 16px;
   --radius-s: 8px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -167,7 +167,7 @@ h3 { color: var(--ink); font-weight: 700; line-height: 1.35; }
 
 .hero {
   position: relative;
-  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.5rem, 5vw, 3.5rem);
+  padding-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 3.5vw, 2.75rem);
   background:
     radial-gradient(640px 420px at 88% 0%, rgba(198, 156, 245, 0.35), transparent 70%),
     linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 64px 64px,
@@ -281,7 +281,7 @@ h3 { color: var(--ink); font-weight: 700; line-height: 1.35; }
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: 2rem 4rem;
   align-items: end;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.25rem, 2.4vw, 1.9rem);
 }
 .section-head h2 { max-width: 20ch; }
 .section-aside { color: var(--muted); font-size: 1rem; max-width: 40ch; }
@@ -361,7 +361,7 @@ ul.facts strong { color: var(--ink); font-weight: 700; }
   border-radius: var(--radius);
   background: var(--band);
   color: #cfc7de;
-  padding: clamp(2rem, 5vw, 3.5rem);
+  padding: clamp(1.6rem, 3.5vw, 2.5rem);
 }
 .band h2 { color: #fff; }
 .band-head { margin-bottom: 2rem; }
@@ -919,69 +919,6 @@ ul.facts strong { color: var(--ink); font-weight: 700; }
     transition-duration: 0.001ms !important;
   }
   .js .reveal { opacity: 1; transform: none; }
-}
-
-/* ---------- Enquiry dialog ---------- */
-
-.enq { width: min(560px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--body); box-shadow: 0 40px 90px -40px rgba(22, 18, 31, 0.6); }
-.enq::backdrop { background: rgba(22, 18, 31, 0.55); backdrop-filter: blur(2px); }
-.enq-form, .enq-send { padding: 1.5rem; }
-.enq-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
-.enq-head h2 { font-size: 1.5rem; }
-.enq-x { border: 0; background: none; font-size: 1.6rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 0 0.25rem; }
-.enq-lead { margin-top: 0.4rem; color: var(--muted); font-size: 0.92rem; }
-.enq-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.9rem; }
-.enq-fields .field:has(textarea), .enq-fields .enq-choices { grid-column: 1 / -1; }
-.enq .field input, .enq .field textarea { display: block; width: 100%; margin-top: 0.35rem; padding: 0.6rem 0.75rem; border: 1px solid var(--line-strong); border-radius: var(--radius-s); background: var(--bg); color: var(--ink); font: 400 0.95rem/1.5 var(--sans); }
-.enq-choices { margin-top: 0.9rem; border: 0; padding: 0; }
-.enq-choices legend { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
-.enq-choices legend span, .enq .field > span { font-weight: 400; color: var(--muted); }
-.enq-choices label { display: inline-block; margin: 0.4rem 0.35rem 0 0; cursor: pointer; }
-.enq-choices input { position: absolute; opacity: 0; }
-.enq-choices label span { display: inline-block; padding: 0.4rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 999px; font-size: 0.88rem; }
-.enq-choices input:checked + span { background: var(--violet-2); border-color: var(--violet-2); color: #fff; }
-.enq-choices input:focus-visible + span { outline: 2px solid var(--violet-2); outline-offset: 2px; }
-.enq-apps { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.1rem; }
-.enq-preview { margin-top: 1rem; padding: 0.9rem; max-height: 180px; overflow: auto; border-radius: var(--radius-s); background: var(--bg); border: 1px solid var(--line); font: 400 0.8rem/1.55 var(--mono); white-space: pre-wrap; color: var(--ink); }
-.enq-send .link-btn { margin-top: 0.8rem; }
-
-/* ---------- Offline assistant ---------- */
-
-.bot { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60; }
-.bot-open { display: flex; align-items: center; gap: 0.45rem; padding: 0.75rem 1.1rem; border: 0; border-radius: 999px; background: var(--violet-2); color: #fff; font: 700 0.95rem var(--sans); cursor: pointer; box-shadow: 0 16px 34px -14px rgba(51, 5, 130, 0.7); }
-.bot-open svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
-.bot-panel { position: absolute; right: 0; bottom: calc(100% + 0.75rem); width: min(380px, calc(100vw - 2rem)); display: flex; flex-direction: column; max-height: min(560px, calc(100dvh - 7rem)); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 30px 70px -30px rgba(22, 18, 31, 0.55); overflow: hidden; }
-.bot-panel[hidden] { display: none; }
-.bot-head { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 1rem; background: var(--band); color: #fff; }
-.bot-head strong { display: block; font-size: 0.98rem; }
-.bot-head span { font-size: 0.75rem; color: #b9b0cc; }
-.bot-x { border: 0; background: none; color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
-.bot-log { flex: 1; overflow-y: auto; padding: 1rem; display: grid; gap: 0.6rem; align-content: start; }
-.bot-msg { max-width: 92%; padding: 0.6rem 0.8rem; border-radius: 12px; font-size: 0.9rem; line-height: 1.5; }
-.bot-bot { background: var(--bg); border: 1px solid var(--line); color: var(--ink); }
-.bot-bot a, .bot-bot .link-btn { color: var(--violet-2); font-weight: 600; font-size: inherit; }
-.bot-me { justify-self: end; background: var(--violet-2); color: #fff; }
-.bot { transition: opacity 0.25s, transform 0.25s var(--ease); }
-.bot-waiting { opacity: 0; transform: translateY(12px); pointer-events: none; }
-.bot-opts { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: flex-end; }
-.bot-opts button, .bot-opts a { padding: 0.5rem 0.85rem; border: 1px solid var(--violet-2); border-radius: 999px; background: var(--surface); color: var(--violet-2); font: 600 0.86rem var(--sans); text-align: left; text-decoration: none; cursor: pointer; }
-.bot-opts button:hover, .bot-opts a:hover { background: var(--lilac-soft); }
-.bot-opts .bot-primary { background: var(--violet-2); color: #fff; }
-.bot-opts .bot-primary:hover { background: var(--violet); }
-.bot-opts .bot-ghost { border-color: transparent; color: var(--muted); font-weight: 500; }
-.bot-rec { display: grid; gap: 0.25rem; }
-.bot-rec-tag { font: 500 0.7rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--violet-2); }
-.bot-rec strong { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: var(--ink); }
-.bot-rec-meta { font: 500 0.8rem var(--mono); color: var(--violet); }
-.bot-rec p { margin-top: 0.2rem; }
-
-@media (max-width: 860px) {
-  .dim-row { grid-template-columns: 1fr; gap: 0.35rem; }
-  .dim-row-head { display: none; }
-}
-@media (max-width: 560px) {
-  .enq-fields, .enq-apps { grid-template-columns: 1fr; }
-  .bot { right: 0.75rem; bottom: 0.75rem; }
 }
 
 /* ---------- Ambient background: two soft glows that drift as you scroll ---------- */
