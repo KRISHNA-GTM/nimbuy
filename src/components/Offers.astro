@@ -1,0 +1,72 @@
+---
+// Shared by the home page (compact) and /offers. Every CTA goes to /book with the offer preselected.
+interface Props { id?: string; }
+const { id = 'offers' } = Astro.props;
+---
+<div class="offer-grid" id={id}>
+  <article class="card offer reveal">
+    <span class="idx">00 · SELF-SERVE</span>
+    <p class="price">Free</p>
+    <h3>Listing Audit</h3>
+    <p class="offer-term">Instant · any listing</p>
+    <p class="offer-desc">The audit tool, in your browser.</p>
+    <ul>
+      <li>Score out of 100 on 7 dimensions</li>
+      <li>Your position against the live-listing benchmark</li>
+      <li>Your top 3 fixes, ranked by points</li>
+    </ul>
+    <span class="offer-spacer"></span>
+    <a class="btn btn-outline" href="/audit/">Run the free audit</a>
+  </article>
+
+  <article class="card offer offer-feature reveal">
+    <span class="offer-flag">Start here</span>
+    <span class="idx">01 · EXISTING LISTING</span>
+    <p class="price">$500<small>per listing</small></p>
+    <h3>Listing Optimize</h3>
+    <p class="offer-term">3 business days · one revision round</p>
+    <p class="offer-desc">Your listing, checked by hand against the four readers, then rewritten.</p>
+    <ul>
+      <li>Full 7-dimension audit, done by hand</li>
+      <li>Answers X of 12 reviewer questions, with what is missing</li>
+      <li>New title, descriptions, highlights, keywords and pricing-unit wording, ready to paste</li>
+      <li>Co-sell kit if you have a live AWS deal; otherwise a handover note</li>
+    </ul>
+    <span class="offer-spacer"></span>
+    <a class="btn btn-primary" href="/book/?offer=optimize#brief">Start the optimize</a>
+  </article>
+
+  <article class="card offer reveal">
+    <span class="idx">02 · NEW LISTING</span>
+    <p class="price">$1,000<small>per listing</small></p>
+    <h3>Listing Launch</h3>
+    <p class="offer-term">About 14 days from kickoff</p>
+    <p class="offer-desc">Not on AWS Marketplace yet? We write it and take it live.</p>
+    <ul>
+      <li>Every listing field written to score high on all 7 dimensions</li>
+      <li>Set up through temporary IAM access you grant and revoke, or handed to your team ready to enter</li>
+      <li>Tested with a $0.01 offer before real pricing goes live</li>
+      <li>We stay until AWS approves it and review issues are closed</li>
+    </ul>
+    <span class="offer-spacer"></span>
+    <a class="btn btn-outline" href="/book/?offer=launch#brief">Plan the launch</a>
+  </article>
+
+  <article class="card offer reveal">
+    <span class="offer-flag offer-flag-quiet">Waitlist</span>
+    <span class="idx">03 · LISTING + GTM</span>
+    <p class="price">By brief</p>
+    <h3>Marketplace Launch Sprint</h3>
+    <p class="offer-term">6–8 weeks · limited intake</p>
+    <p class="offer-desc">For teams that need the listing to bring in pipeline. Taken on a few at a time.</p>
+    <ul>
+      <li>Launch or Optimize, included</li>
+      <li>Positioning against your top Marketplace competitors</li>
+      <li>Keyword plan for Marketplace search and AI search</li>
+      <li>Proof plan: case studies, reviews, AWS competency path</li>
+      <li>Co-sell kit and launch content, with weekly check-ins</li>
+    </ul>
+    <span class="offer-spacer"></span>
+    <a class="btn btn-outline" href="/book/?offer=sprint#brief">Join the waitlist</a>
+  </article>
+</div>

@@ -1,0 +1,43 @@
+---
+// Offer brief / waitlist / contact. Sends to the HubSpot "brief" form, or falls back to email.
+interface Props { offer?: string; }
+const { offer = '' } = Astro.props;
+const consent = 'I agree that Nimbuy may store these details to reply to my enquiry. See the privacy policy.';
+---
+<div class="form-card" id="brief">
+  <h3>Send a short brief</h3>
+  <p>You get a written scope within one business day. No call needed.</p>
+  <form data-form="brief" data-subject="Nimbuy brief" data-consent={consent} style="margin-top:0.5rem">
+    <input class="hp" type="text" name="website_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <label class="field">What do you need?
+      <select name="offer" id="offer-select">
+        <option value="Listing Optimize" selected={offer === 'optimize'}>Listing Optimize · $500</option>
+        <option value="Listing Launch" selected={offer === 'launch'}>Listing Launch · $1,000</option>
+        <option value="Marketplace Launch Sprint (waitlist)" selected={offer === 'sprint'}>Marketplace Launch Sprint · join the waitlist</option>
+        <option value="Not sure yet" selected={offer === ''}>Not sure yet</option>
+      </select>
+    </label>
+    <div class="field-row">
+      <label class="field">Your name<input name="name" type="text" required autocomplete="name" /></label>
+      <label class="field">Work email<input name="email" type="email" required autocomplete="email" /></label>
+    </div>
+    <div class="field-row">
+      <label class="field">Company<input name="company" type="text" required autocomplete="organization" /></label>
+      <label class="field">Product website<input name="website" type="url" placeholder="https://" /></label>
+    </div>
+    <label class="field">Marketplace listing URL <span>if you are listed</span><input name="listing_url" type="url" placeholder="https://aws.amazon.com/marketplace/pp/prodview-…" /></label>
+    <label class="field">Anything we should know <span>optional</span><textarea name="message" rows="3" placeholder="A live AWS deal, a deadline, what has not worked so far"></textarea></label>
+    <label class="consent"><input type="checkbox" name="consent" required /><span>I agree that Nimbuy may store these details to reply to my enquiry. <a href="/privacy/">Privacy policy</a>.</span></label>
+    <p class="form-error" role="alert"></p>
+    <button class="btn btn-primary btn-block" type="submit">Send brief</button>
+  </form>
+  <p class="form-ok" data-ok hidden tabindex="-1">Brief received. Expect a written scope within one business day.</p>
+</div>
+
+<script>
+  // Preselect the offer from ?offer=optimize|launch|sprint
+  const q = new URLSearchParams(location.search).get('offer');
+  const map: Record<string, string> = { optimize: 'Listing Optimize', launch: 'Listing Launch', sprint: 'Marketplace Launch Sprint (waitlist)' };
+  const sel = document.getElementById('offer-select') as HTMLSelectElement | null;
+  if (q && sel && map[q]) sel.value = map[q];
+</script>

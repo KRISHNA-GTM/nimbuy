@@ -1,0 +1,17 @@
+---
+interface Props { title?: string; text?: string; }
+const { title = 'Find out where your listing stands.', text = 'Paste your listing into the free audit. It takes about a minute, and nothing is stored.' } = Astro.props;
+---
+<section class="cta-band dark grid-bg">
+  <div class="wrap cta-inner">
+    <div>
+      <p class="label">Start here</p>
+      <h2 style="margin-top:1rem">{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="hero-actions" style="margin:0">
+      <a class="btn btn-mint" href="/audit/">Run the free audit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a class="btn btn-ghost-dark" href="/book/">Book a call</a>
+    </div>
+  </div>
+</section>

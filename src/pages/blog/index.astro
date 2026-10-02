@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Blog | Nimbuy" description="Data and method for AWS Marketplace listings: what live listings leave out, how to write pricing units, and the four readers every listing has.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">Blog</p>
+      <h1>Findings, not filler.</h1>
+      <p class="lead" style="max-width:56ch">Every post is built from the live-listing data or a method we use on audits. Counts are labelled as facts; reasoning is labelled as opinion or inference.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="cards-3">
+        {posts.map((p) => (
+          <a class="card card-link post-card reveal" href={`/blog/${p.id}/`}>
+            <span class="idx tag">{p.data.tag.toUpperCase()}</span>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+            <div class="meta"><span>{p.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span><span>{p.data.readMinutes} min read</span></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section dark grid-bg">
+    <div class="wrap two-col">
+      <div>
+        <p class="label">Newsletter</p>
+        <h2 style="margin-top:0.9rem">New findings, when there are some.</h2>
+      </div>
+      <div>
+        <p style="margin-bottom:1rem">No schedule and no filler. One email when a new data cut or method is published.</p>
+        <Newsletter source="blog-index" dark />
+      </div>
+    </div>
+  </section>
+</Base>

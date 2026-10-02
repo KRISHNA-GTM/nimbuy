@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Offers from '../components/Offers.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+const out = [
+  ['Changing your pricing setup', 'We recommend wording. Changing or creating pricing dimensions and private offers is yours to do.'],
+  ['Claims you cannot evidence', 'No certification, customer or number goes in unless you can show it.'],
+  ['More than one revision round', 'One round within five business days of delivery.'],
+  ['Publishing inside your AWS account', 'Optimize needs no access. Launch uses temporary IAM access that you grant and revoke.'],
+];
+---
+<Base title="Offers and pricing | Nimbuy" description="Listing Optimize $500, Listing Launch $1,000, and the Marketplace Launch Sprint by brief. Fixed scope, fixed price, written down before work starts.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">Offers</p>
+      <h1>Pick the level of help.</h1>
+      <p class="lead" style="max-width:56ch">Fixed scope and a fixed price, written down before work starts. Send a short brief and you get the scope in writing within one business day.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <Offers id="all-offers" />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap two-col">
+      <div>
+        <p class="label">Terms, plainly</p>
+        <h2 style="margin-top:0.9rem">What you can count on.</h2>
+        <ul class="who-facts" style="margin-top:1.5rem">
+          <li><strong>Optimize:</strong> $500, paid upfront. Three business days from the day your intake form comes back.</li>
+          <li><strong>Launch:</strong> $1,000, about 14 days from the point your sign-up and billing integration is ready.</li>
+          <li><strong>Sprint:</strong> scoped from your brief; limited intake, so it runs as a waitlist.</li>
+          <li><strong>Revisions:</strong> one round, within five business days of delivery.</li>
+          <li><strong>Evidence rule:</strong> if a claim cannot be proven, it stays off the page.</li>
+        </ul>
+      </div>
+      <div class="notice">
+        <p class="label" style="margin-bottom:0.75rem">Not included</p>
+        <ul class="faq" style="margin-top:0">
+          {out.map(([a, b]) => <li style="padding:0.7rem 0;border-bottom:1px solid var(--line)"><strong>{a}.</strong> {b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0"><Faq /></section>
+  <CtaBand title="Not sure which one?" text="Run the free audit first. If the score is high, you may not need us. If it is low, the three fixes show where to start." />
+</Base>

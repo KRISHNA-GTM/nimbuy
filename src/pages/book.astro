@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { SITE } from '../config';
+---
+<Base title="Book a call or send a brief | Nimbuy" description="Book a 30-minute call on Google Meet, or send a short written brief and get a scope within one business day.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">Book</p>
+      <h1>Talk it through, or just send the brief.</h1>
+      <p class="lead" style="max-width:56ch">Prefer to write it down? The brief form gets you a scope in writing within one business day. Prefer to talk? Pick a 30-minute slot.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap two-col">
+      <div>
+        <p class="label" style="margin-bottom:1rem">Option 1 · 30-minute call</p>
+        <div class="book-embed">
+          <iframe src={`${SITE.calUrl}?embed=true&layout=month_view`} title="Book a 30-minute call" loading="lazy"></iframe>
+        </div>
+        <p class="form-fallback">Calendar not loading? <a href={SITE.calUrl} target="_blank" rel="noopener">Open it in a new tab</a>, or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:1rem">Option 2 · Written brief</p>
+        <LeadForm />
+      </div>
+    </div>
+  </section>
+</Base>

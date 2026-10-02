@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import AuditTool from '../components/AuditTool.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { BENCH } from '../data/facts';
+const dims = [
+  ['1 · AI discoverability', 'The title, the buyer and the job the product does, in plain words'],
+  ['2 · Technical clarity', 'AWS services and integrations named, plus numbers an engineer can check'],
+  ['3 · Deployment clarity', 'What happens after Subscribe, what the buyer needs first, and how fast it works'],
+  ['4 · Security signals', 'Certifications, encryption, access control, audit logs and how data is handled'],
+  ['5 · Pricing clarity', 'A unit the buyer can count, explained in the copy, with every price line described'],
+  ['6 · Private-offer readiness', 'Contract pricing, private offer requests switched on, and terms like annual or multi-year stated'],
+  ['7 · Protocol & category fit', 'Agent-facing products only: MCP or A2A support declared, APIs named, and the AI platforms you work with'],
+];
+---
+<Base title="Free AWS Marketplace listing audit | Nimbuy" description={`Paste your listing. Get a score out of 100 on 7 dimensions, your position against ${BENCH.count} live listings, and your 3 highest-value fixes. Runs in your browser.`}>
+  <section class="hero dark grid-bg" style="padding-bottom:3rem">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label">Free listing audit</p>
+        <h1 style="font-size:clamp(2.3rem,4.8vw,3.8rem)">Score your listing. <em>See where it ranks.</em></h1>
+        <p class="lead">Paste the text from your public listing. You get a score out of 100, your position against {BENCH.count} live AWS Marketplace listings, and the three fixes that add the most points.</p>
+        <ul class="statline">
+          <li><strong class="num">{BENCH.count}</strong>listings benchmarked</li>
+          <li><strong class="num">7</strong>dimensions</li>
+          <li><strong>0</strong>stored or sent</li>
+        </ul>
+      </div>
+      <div class="reveal"><AuditTool /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">How the audit works</p>
+          <h2>Three steps. About a minute.</h2>
+        </div>
+        <p class="section-aside">Every point comes from something a buyer, a reviewer or AI search looks for on the page.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="idx">STEP 01</span><h3>Paste your listing</h3><p>Copy the title, descriptions, highlights and pricing from your public listing page.</p></li>
+        <li><span class="idx">STEP 02</span><h3>Get a score out of 100</h3><p>Up to 10 points per dimension. Six apply to every product; the seventh only if AI agents call yours. Points earned out of points that apply, shown out of 100.</p></li>
+        <li><span class="idx">STEP 03</span><h3>See your position and fixes</h3><p>Your score is placed against {BENCH.count} live listings scored by the same rules. The three fixes worth the most points come first.</p></li>
+      </ol>
+      <div class="dim-table">
+        <div class="dim-row dim-row-head" aria-hidden="true"><span>Dimension</span><span>What earns the points</span></div>
+        {dims.map(([a, b]) => <div class="dim-row"><b>{a}</b><span>{b}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark grid-bg">
+    <div class="wrap">
+      <figure class="market" style="margin-top:0">
+        <figcaption><strong>How live listings score on this audit</strong><span>Typical: <b>{BENCH.median}</b> · Top 10% starts at <b>{BENCH.p90}</b> · Best: <b>{BENCH.max}</b></span></figcaption>
+        <div id="market-chart" class="market-chart"></div>
+        <p class="market-note">Score your listing above and your position appears on this chart.</p>
+      </figure>
+      <p class="source-note">
+        This is the automatic keyword audit's score, not the hand audit's. A typical listing scores low because a missing fact scores zero. Chart scores use the 6 dimensions that apply to every product; agent-facing products are ranked on all 7 against the same listings. Snapshot {BENCH.snapshot}. The audit is independent, is not an AWS rating, and does not predict approval, search placement or sales.
+      </p>
+    </div>
+  </section>
+  <CtaBand title="Scored it? Now fix it." text="Listing Optimize is a hand audit against the four readers, plus a rewrite you can paste in. Three business days." />
+</Base>

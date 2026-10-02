@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE } from '../../config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  author: { '@type': 'Person', name: SITE.founder },
+  publisher: { '@type': 'Organization', name: SITE.name },
+};
+---
+<Base title={`${d.title} | Nimbuy`} description={d.description} type="article">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label"><a href="/blog/" style="color:inherit;text-decoration:none">Blog</a> · {d.tag}</p>
+      <h1 class="article-head" style="max-width:24ch">{d.title}</h1>
+      <p class="byline">
+        <span>{SITE.founder}</span>
+        <span>{d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        <span>{d.readMinutes} min read</span>
+      </p>
+    </div>
+  </section>
+  <article class="section" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <div class="wrap">
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+  <section class="section-tight">
+    <div class="wrap two-col">
+      <div class="form-card">
+        <h3>Get the next one by email</h3>
+        <p style="margin-bottom:1rem">One email when something new is published.</p>
+        <Newsletter source={`post:${post.id}`} />
+      </div>
+      <div class="form-card">
+        <h3>Score your own listing</h3>
+        <p style="margin-bottom:1rem">The free audit checks the same seven dimensions. It runs in your browser.</p>
+        <a class="btn btn-primary" href="/audit/">Run the free audit</a>
+      </div>
+    </div>
+  </section>
+  <CtaBand title="Want it fixed, not just scored?" text="Listing Optimize: a hand audit, a paste-ready rewrite and a co-sell kit in three business days." />
+</Base>

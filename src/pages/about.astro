@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../config';
+import { BENCH } from '../data/facts';
+---
+<Base title="About Nimbuy | Founded by Krishna Kumar T S" description="Nimbuy builds the tools and does the rewriting that make an AWS Marketplace listing answer its four readers. Founded by Krishna Kumar T S.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">About</p>
+      <h1>Built by someone who reads listings for a living.</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="who">
+        <picture class="who-photo">
+          <source type="image/webp" srcset="/assets/krishna-720.webp" />
+          <img src="/assets/krishna-720.jpg" width="720" height="832" alt={`Portrait of ${SITE.founder}`} decoding="async" />
+        </picture>
+        <div class="who-copy">
+          <p class="label">Founder</p>
+          <h2>{SITE.founder}</h2>
+          <p class="who-role">Every audit and rewrite is done by hand.</p>
+          <ul class="who-facts">
+            <li>Built the benchmark: <strong>{BENCH.count} live listings</strong> read through the AWS Marketplace Discovery API</li>
+            <li>Works on AWS Marketplace listings, AWS competency documentation and partner go-to-market</li>
+            <li><strong>AWS Certified Cloud Practitioner</strong>, plus AWS Partner Sales and Technical accreditations</li>
+          </ul>
+          <div class="who-links">
+            <a class="btn btn-outline btn-small" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-outline btn-small" href={SITE.credly} target="_blank" rel="noopener">Verify badges on Credly</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">How we work</p>
+          <h2>Four rules we do not break.</h2>
+        </div>
+      </div>
+      <div class="cards-2">
+        <div class="card"><span class="idx">RULE 01</span><h3>Evidence or it stays off the page</h3><p>A claim goes into a listing only if the client can show it. Every score in an audit carries a quoted sentence from the listing.</p></div>
+        <div class="card"><span class="idx">RULE 02</span><h3>Public data only</h3><p>The benchmark uses the public AWS Marketplace Discovery API. We never ask for access to a seller's portal for an audit.</p></div>
+        <div class="card"><span class="idx">RULE 03</span><h3>Aggregates, not call-outs</h3><p>We publish counts and patterns. We do not publish any single listing's score, and a client's score never appears in anything public.</p></div>
+        <div class="card"><span class="idx">RULE 04</span><h3>Independent</h3><p>Nimbuy is not affiliated with AWS. The score is our own audit of the listing text, not an AWS rating.</p></div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

@@ -1,0 +1,51 @@
+---
+import { SITE } from '../config';
+import Newsletter from './Newsletter.astro';
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/assets/nimbuy-wordmark-white.svg" alt="Nimbuy" width="94" height="28" />
+        <p>Tools and rewrites that make an AWS Marketplace listing answer the four people who read it before a deal.</p>
+        <div class="dark" style="margin-top:1.5rem;max-width:30rem;background:transparent">
+          <p class="label" style="margin-bottom:0.75rem">Newsletter</p>
+          <Newsletter source="footer" dark />
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/audit/">Free listing audit</a></li>
+          <li><a href="/offers/">Offers &amp; pricing</a></li>
+          <li><a href="/sample/">Sample rewrite</a></li>
+          <li><a href="/playbook/">Playbook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/insights/">Market insights</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/process/">How we work</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/book/">Book a call</a></li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© {year} Nimbuy · Founded by {SITE.founder}</p>
+      <p>AWS and AWS Marketplace are trademarks of Amazon.com, Inc. or its affiliates. Nimbuy is independent and not affiliated with AWS.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /playbook/read/
+
+Sitemap: https://nimbuy.github.io/sitemap-index.xml

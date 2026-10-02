@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="Terms | Nimbuy" description="Terms of use for the Nimbuy website and free audit, and how paid work is scoped.">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">Legal</p>
+      <h1>Terms</h1>
+      <p class="byline"><span>Last updated 2 October 2026</span></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="prose legal">
+        <h2>The free audit and the website</h2>
+        <p>The audit scores the listing text you paste, using fixed word and field checks. It is an independent audit by Nimbuy. It is <strong>not an AWS rating</strong>, and it does not predict AWS approval, search placement, ranking, sales or any business result. A score describes the text you entered at the moment you entered it.</p>
+        <p>The market figures on this site come from aggregated public AWS Marketplace listing data. They describe the listings at the snapshot date shown. They are not statements about any individual product or company.</p>
+
+        <h2>The playbook and the blog</h2>
+        <p>These are general guidance. They are not legal, security, compliance or financial advice. Check AWS's current documentation and your own requirements before acting.</p>
+
+        <h2>Paid work</h2>
+        <p>Paid work is governed by the written scope you receive and approve before paying. The scope states what is included, what is not, the price and the timing. If something is not in the scope, it is not part of the work.</p>
+        <p>We write listing copy only from facts you provide and can evidence. You remain responsible for the accuracy of the claims in your listing and for compliance with AWS Marketplace requirements.</p>
+
+        <h2>No warranty, limited liability</h2>
+        <p>The site and its tools are provided as they are. To the extent the law allows, Nimbuy is not liable for indirect or consequential loss arising from use of the site, the audit or the guidance.</p>
+
+        <h2>Trademarks</h2>
+        <p>AWS and AWS Marketplace are trademarks of Amazon.com, Inc. or its affiliates. Nimbuy is independent and not affiliated with, endorsed by, or sponsored by AWS. Other names belong to their owners.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about these terms: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. See also the <a href="/privacy/">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>
